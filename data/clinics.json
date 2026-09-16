@@ -1,0 +1,86 @@
+[
+  {
+    "id": "clinic-1",
+    "name": "Esperanza Community Health Center",
+    "description": "Federally Qualified Health Center offering comprehensive primary care, pediatric immunizations, diabetes care, and low-cost pharmacy.",
+    "address": "1420 S. Mission St",
+    "city": "San Francisco",
+    "state": "CA",
+    "postalCode": "94110",
+    "phone": "(415) 555-0192",
+    "services": ["sliding_scale", "free_vaccines", "diabetes_education", "prenatal", "pharmacy", "interpreter"],
+    "languages": ["English", "Spanish", "Turkish / Türkçe", "Mayan (Mam, K’iche’)"],
+    "hours": {
+      "Mon-Thu": "8:00 AM - 7:00 PM",
+      "Fri": "8:00 AM - 5:00 PM",
+      "Sat": "8:30 AM - 1:00 PM",
+      "Sun": "Closed"
+    },
+    "wheelchairAccessible": true,
+    "slidingScale": true,
+    "acceptsUninsured": true,
+    "mapUrl": "https://maps.google.com/?q=37.7512,-122.4183"
+  },
+  {
+    "id": "clinic-2",
+    "name": "North Beach & Chinatown Health Center",
+    "description": "Bilingual community clinic specializing in chronic disease prevention, senior wellness, dental screenings, and mental health counseling.",
+    "address": "889 Broadway St",
+    "city": "San Francisco",
+    "state": "CA",
+    "postalCode": "94133",
+    "phone": "(415) 555-0344",
+    "services": ["sliding_scale", "free_vaccines", "mental_health", "dental", "chronic_disease"],
+    "languages": ["English", "Cantonese", "Mandarin", "Vietnamese"],
+    "hours": {
+      "Mon-Fri": "8:30 AM - 5:00 PM",
+      "Sat": "9:00 AM - 12:30 PM",
+      "Sun": "Closed"
+    },
+    "wheelchairAccessible": true,
+    "slidingScale": true,
+    "acceptsUninsured": true,
+    "mapUrl": "https://maps.google.com/?q=37.7981,-122.4102"
+  },
+  {
+    "id": "clinic-3",
+    "name": "Southeast Family Wellness & Urgent Care",
+    "description": "Full-service neighborhood clinic with walk-in urgent care triage, food pharmacy vouchers, and free maternal and infant care.",
+    "address": "2401 Keith St",
+    "city": "San Francisco",
+    "state": "CA",
+    "postalCode": "94124",
+    "phone": "(415) 555-0811",
+    "services": ["sliding_scale", "free_vaccines", "mental_health", "prenatal", "food_support", "interpreter"],
+    "languages": ["English", "Spanish", "Turkish / Türkçe", "Samoan", "Tagalog"],
+    "hours": {
+      "Mon-Sat": "8:00 AM - 6:00 PM",
+      "Sun": "10:00 AM - 2:00 PM"
+    },
+    "wheelchairAccessible": true,
+    "slidingScale": true,
+    "acceptsUninsured": true,
+    "mapUrl": "https://maps.google.com/?q=37.7289,-122.3891"
+  },
+  {
+    "id": "clinic-4",
+    "name": "Oakland East Bay Community Medicine",
+    "description": "Community-led health center offering sliding fee scales, free preventative dental checkups, and diabetes peer support groups.",
+    "address": "10700 MacArthur Blvd",
+    "city": "Oakland",
+    "state": "CA",
+    "postalCode": "94605",
+    "phone": "(510) 555-4920",
+    "services": ["sliding_scale", "free_vaccines", "diabetes_education", "dental", "mental_health"],
+    "languages": ["English", "Spanish", "Arabic", "Mam", "Turkish / Türkçe"],
+    "hours": {
+      "Mon-Fri": "8:00 AM - 5:30 PM",
+      "Sat": "Closed",
+      "Sun": "Closed"
+    },
+    "wheelchairAccessible": true,
+    "slidingScale": true,
+    "acceptsUninsured": true,
+    "mapUrl": "https://maps.google.com/?q=37.7471,-122.1492"
+  }
+]

@@ -1,0 +1,323 @@
+[
+  {
+    "id": "topic-1",
+    "slug": "diabetes-prevention",
+    "category": "chronic-disease",
+    "icon": "Activity",
+    "readingLevel": "Grade 5-6 (Plain Language)",
+    "readMinutes": 4,
+    "translations": {
+      "en": {
+        "title": "Understanding and Preventing Type 2 Diabetes",
+        "summary": "Learn how blood sugar works, what prediabetes means, and simple daily habits that keep your energy steady and your body strong.",
+        "content": "## What is Diabetes?\n\nWhen you eat, your body breaks down food into a type of sugar called **glucose**. A helper hormone made in your pancreas, called **insulin**, acts like a key. It unlocks your cells so the sugar can go inside and give you energy.\n\nIn **Type 2 diabetes**, the key stops working smoothly. Sugar stays trapped in your bloodstream instead of fueling your muscles and brain. Over time, high blood sugar can tire your heart, kidneys, and eyes.\n\n### What is Prediabetes?\nPrediabetes is like a flashing yellow traffic light. Your blood sugar is higher than normal, but not yet in the diabetes range. **The wonderful news is that prediabetes can be reversed.** Small changes today make a huge difference tomorrow.\n\n### Simple Steps You Can Take\n1. **The Healthy Plate Method**: Fill half your plate with colorful vegetables (spinach, cabbage, carrots), one quarter with lean protein (beans, chicken, eggs), and one quarter with whole grains (brown rice, whole wheat tortillas).\n2. **Move for 30 Minutes**: You do not need an expensive gym. Brisk walking with a neighbor, dancing to music, or taking the stairs all count.\n3. **Drink Water Instead of Sweetened Beverages**: Sodas, sweet teas, and energy drinks spike blood sugar quickly. Choosing water or infused lemon water protects your kidneys.",
+        "keyTakeaways": [
+          "Prediabetes can be reversed with small daily habits.",
+          "Use the Plate Method: 1/2 vegetables, 1/4 protein, 1/4 grains.",
+          "A 30-minute daily brisk walk makes your insulin work better.",
+          "Ask your local community clinic about a simple A1C blood test."
+        ],
+        "vettedSources": [
+          { "name": "Diabetes Overview and Prevention", "organization": "World Health Organization (WHO)", "url": "https://www.who.int/news-room/fact-sheets/detail/diabetes", "year": 2023 },
+          { "name": "Prediabetes - Your Chance to Prevent Type 2 Diabetes", "organization": "Centers for Disease Control and Prevention (CDC)", "url": "https://www.cdc.gov/diabetes/basics/prediabetes.html", "year": 2024 },
+          { "name": "Healthy Living & Standards of Care", "organization": "American Diabetes Association", "url": "https://diabetes.org", "year": 2023 }
+        ],
+        "reviewedBy": "Dr. Elena Gomez, MD",
+        "reviewerRole": "Community Health Physician & Clinical Director",
+        "reviewedAt": "2024-10-12"
+      },
+      "es": {
+        "title": "Entendiendo y Previniendo la Diabetes Tipo 2",
+        "summary": "Aprenda cómo funciona el azúcar en sangre, qué significa la prediabetes y hábitos diarios simples que mantienen su energía y salud.",
+        "content": "## ¿Qué es la Diabetes?\n\nCuando usted come, su cuerpo transforma los alimentos en un tipo de azúcar llamado **glucosa**. Una hormona producida en el páncreas llamada **insulina** actúa como una llave. Abre las células para que el azúcar entre y le dé energía para trabajar y jugar.\n\nEn la **diabetes tipo 2**, la llave ya no abre bien. El azúcar se queda atrapada en su sangre en lugar de alimentar sus músculos y cerebro. Con el tiempo, el azúcar alta constante puede cansar su corazón, riñones y ojos.\n\n### ¿Qué es la Prediabetes?\nLa prediabetes es como un semáforo en amarillo. Su nivel de azúcar está más alto de lo normal, pero aún no en el nivel de diabetes. **La gran noticia es que la prediabetes se puede revertir por completo.** Pequeños cambios hoy transforman su bienestar para siempre.\n\n### Pasos Prácticos para su Día a Día\n1. **El Método del Plato Saludable**: Llene la mitad de su plato con verduras frescas (espinacas, nopales, repollo, ensaladas), un cuarto con proteína (frijoles de la olla, pollo, pescado, huevos) y un cuarto con granos enteros (arroz integral o tortillas de maíz).\n2. **Camine 30 Minutos al Día**: No necesita pagar un gimnasio. Caminar a paso ligero en el parque o con su familia ayuda a que su cuerpo use la insulina de inmediato.\n3. **Tome Agua en Lugar de Refrescos**: Las sodas, aguas frescas muy dulces y jugos embotellados elevan el azúcar bruscamente. El agua natural o con limón cuida sus riñones.",
+        "keyTakeaways": [
+          "La prediabetes se puede revertir con pequeños cambios diarios.",
+          "Use el Plato Saludable: 1/2 verduras, 1/4 proteína, 1/4 granos.",
+          "Caminar 30 minutos al día ayuda a que la insulina trabaje mejor.",
+          "Pregunte en su clínica comunitaria por la prueba de sangre A1C."
+        ],
+        "vettedSources": [
+          { "name": "Diabetes Información y Prevención", "organization": "Organización Mundial de la Salud (OMS)", "url": "https://www.who.int/es/news-room/fact-sheets/detail/diabetes", "year": 2023 },
+          { "name": "Prediabetes: Su Oportunidad para Prevenir la Diabetes Tipo 2", "organization": "CDC en Español", "url": "https://www.cdc.gov/diabetes/spanish/basics/prediabetes.html", "year": 2024 }
+        ],
+        "reviewedBy": "Dra. Elena Gómez, MD",
+        "reviewerRole": "Médica Comunitaria y Directora Clínica",
+        "reviewedAt": "2024-10-12"
+      },
+      "tr": {
+        "title": "Tip 2 Diyabeti Anlamak ve Önlemek",
+        "summary": "Kan şekerinin nasıl çalıştığını, gizli şekerin (prediyabet) ne anlama geldiğini ve vücudunuzu güçlü tutacak basit günlük alışkanlıkları öğrenin.",
+        "content": "## Diyabet Nedir?\n\nYemek yediğinizde vücudunuz besinleri **glukoz** adı verilen bir şeker türüne dönüştürür. Pankreasta üretilen **insülin** hormonu ise bir anahtar görevi görür. Hücrelerinizin kapısını açarak şekerin içeri girmesini ve size enerji vermesini sağlar.\n\n**Tip 2 diyabette** bu anahtar artık düzgün çalışmaz. Şeker hücrelerin içine girip kaslarınıza enerji vermek yerine kanda birikir. Zamanla yüksek kan şekeri kalbinizi, böbreklerinizi ve gözlerinizi yorabilir.\n\n### Prediyabet (Gizli Şeker) Nedir?\nPrediyabet sarı yanan bir trafik lambası gibidir. Kan şekeriniz normalden yüksektir ancak henüz diyabet seviyesinde değildir. **En sevindirici haber ise prediyabetin tamamen geri döndürülebilir olmasıdır.** Bugün atacağınız küçük adımlar geleceğinizi korur.\n\n### Uygulayabileceğiniz Basit Adımlar\n1. **Sağlıklı Tabak Yöntemi**: Tabağınızın yarısını renkli sebzelerle (ıspanak, lahana, havuç, yeşillikler), dörtte birini proteinle (mercimek, fasulye, tavuk, yumurta) ve dörtte birini tam tahıllarla (bulgur, tam buğday ekmeği) doldurun.\n2. **Günde 30 Dakika Yürüyün**: Pahalı bir spor salonuna gerek yoktur. Mahallede tempolu yürümek, müzikle dans etmek veya merdiven çıkmak bile insülininizin daha iyi çalışmasını sağlar.\n3. **Şekerli İçecekler Yerine Su İçin**: Gazlı içecekler, hazır meyve suları ve şekerli çaylar kan şekerini aniden yükseltir. Su veya limonlu su içmek böbreklerinizi korur.",
+        "keyTakeaways": [
+          "Prediyabet (gizli şeker) küçük günlük alışkanlıklarla tamamen geri döndürülebilir.",
+          "Sağlıklı Tabak Kuralı: 1/2 sebze, 1/4 protein, 1/4 tam tahıl.",
+          "Günde 30 dakika tempolu yürüyüş insülinin hücrelere girmesini kolaylaştırır.",
+          "Toplum sağlığı merkezinizden basit bir HbA1c kan testi isteyebilirsiniz."
+        ],
+        "vettedSources": [
+          { "name": "Diyabet Bilgi Notu ve Önleme", "organization": "Dünya Sağlık Örgütü (WHO / DSÖ)", "url": "https://www.who.int/news-room/fact-sheets/detail/diabetes", "year": 2023 },
+          { "name": "Türkiye Diyabet Önleme ve Kontrol Kılavuzu", "organization": "T.C. Sağlık Bakanlığı", "url": "https://hsgm.saglik.gov.tr", "year": 2023 }
+        ],
+        "reviewedBy": "Uzm. Dr. Mehmet Kaya",
+        "reviewerRole": "Halk Sağlığı ve Aile Hekimliği Uzmanı",
+        "reviewedAt": "2024-10-12"
+      }
+    }
+  },
+  {
+    "id": "topic-2",
+    "slug": "vaccination-basics",
+    "category": "prevention",
+    "icon": "ShieldCheck",
+    "readingLevel": "Grade 5-6 (Plain Language)",
+    "readMinutes": 3,
+    "translations": {
+      "en": {
+        "title": "Vaccines: How They Protect You and Your Family",
+        "summary": "Vaccines act like a practice drill for your immune system, helping your body defeat dangerous germs before they make you sick.",
+        "content": "## How Do Vaccines Work?\n\nThink of your immune system as a neighborhood defense team. When a new germ enters your body, your immune system needs time to learn how to fight it.\n\nA vaccine gives your body a safe \"practice drill.\" It shows your immune system a weakened or harmless piece of the germ. Your body practices making **antibodies** (defense shields). If the real virus or bacteria ever attacks you later, your body recognizes it right away and defeats it quickly.\n\n### Are Vaccines Safe?\nYes. Before any vaccine is approved for the public, scientific safety boards test it carefully in thousands of diverse volunteers. After approval, doctors and health ministries continue to monitor safety constantly.\n\n### Mild Side Effects Are Normal\nIt is very common to feel a sore arm, slight tiredness, or a low fever for 24 to 48 hours after receiving a shot. This is not the illness—it is proof that your body is successfully building strong protection!",
+        "keyTakeaways": [
+          "Vaccines teach your body to fight germs without getting sick.",
+          "Severe side effects are extremely rare; mild soreness shows your immune system is working.",
+          "Community vaccines protect babies and elders who cannot be vaccinated.",
+          "Most neighborhood clinics provide free or low-cost vaccines."
+        ],
+        "vettedSources": [
+          { "name": "How Vaccines Work", "organization": "World Health Organization (WHO)", "url": "https://www.who.int/emergencies/diseases/novel-coronavirus-2019/covid-19-vaccines/how-do-vaccines-work", "year": 2023 },
+          { "name": "Vaccines & Immunizations Guidance", "organization": "Centers for Disease Control and Prevention (CDC)", "url": "https://www.cdc.gov/vaccines/index.html", "year": 2024 }
+        ],
+        "reviewedBy": "Nurse Practitioner Marcus Vance, FNP-C",
+        "reviewerRole": "Lead Immunization Specialist, Public Health Coalition",
+        "reviewedAt": "2024-11-04"
+      },
+      "es": {
+        "title": "Vacunas: Cómo Protegen a Usted y a su Familia",
+        "summary": "Las vacunas funcionan como un simulacro de entrenamiento para sus defensas, ayudando al cuerpo a vencer enfermedades peligrosas.",
+        "content": "## ¿Cómo Funcionan las Vacunas?\n\nPiense en su sistema inmunológico como un equipo de protección de su comunidad. Cuando un nuevo microbio entra en el cuerpo, sus defensas necesitan tiempo para aprender a combatirlo.\n\nUna vacuna le da a su cuerpo un \"simulacro seguro\". Muestra una parte inofensiva o debilitada del microbio. Su cuerpo practica creando **anticuerpos** (escudos de defensa). Si el virus real intenta entrar después, su cuerpo lo reconoce al instante y lo vence rápidamente.\n\n### ¿Son Seguras las Vacunas?\nSí. Antes de que cualquier vacuna llegue al público, comités de científicos y médicos la evalúan rigurosamente en miles de voluntarios. Los ministerios de salud vigilan su seguridad continuamente.\n\n### Efectos Secundarios Leves\nSentir dolor en el brazo, cansancio leve o una pequeña calentura durante 24 a 48 horas es normal. ¡Esto demuestra que sus defensas están entrenando activamente!",
+        "keyTakeaways": [
+          "Las vacunas enseñan al cuerpo a defenderse sin enfermarse.",
+          "Los efectos secundarios graves son rarísimos; la molestia leve muestra que sus defensas están listas.",
+          "Vacunarse protege a los bebés y ancianos vulnerables.",
+          "La mayoría de las clínicas comunitarias ofrecen vacunas gratis o a bajo costo."
+        ],
+        "vettedSources": [
+          { "name": "Cómo funcionan las vacunas", "organization": "Organización Mundial de la Salud (OMS)", "url": "https://www.who.int/es/emergencies/diseases/novel-coronavirus-2019/covid-19-vaccines/how-do-vaccines-work", "year": 2023 },
+          { "name": "Vacunas e inmunización", "organization": "CDC en Español", "url": "https://www.cdc.gov/vaccines/index-sp.html", "year": 2024 }
+        ],
+        "reviewedBy": "Enfermero Especialista Marcus Vance, FNP-C",
+        "reviewerRole": "Especialista en Inmunización, Coalición de Salud Pública",
+        "reviewedAt": "2024-11-04"
+      },
+      "tr": {
+        "title": "Aşılar: Sizi ve Ailenizi Nasıl Korur?",
+        "summary": "Aşılar bağışıklık sisteminiz için bir güvenlik tatbikatı gibi çalışır ve mikroplar sizi hasta etmeden önce vücudunuzun onları yenmesini sağlar.",
+        "content": "## Aşılar Nasıl Çalışır?\n\nBağışıklık sisteminizi mahallenizi koruyan bir savunma ekibi gibi düşünün. Vücudunuza yeni bir mikrop girdiğinde, bağışıklık sisteminizin onunla nasıl savaşacağını öğrenmesi zaman alır.\n\nAşı vücudunuza güvenli bir \"tatbikat\" yaptırır. Bağışıklık sisteminize mikrobun zararsız veya zayıflatılmış küçük bir parçasını gösterir. Vücudunuz koruyucu **antikorlar** (savunma kalkanları) üretmeyi öğrenir. Gerçek mikrop daha sonra size bulaşırsa, vücudunuz onu anında tanır ve hasta olmadan hızla yok eder.\n\n### Aşılar Güvenli midir?\nEvet. Herhangi bir aşı halka sunulmadan önce bağımsız bilim kurulları tarafından binlerce gönüllü üzerinde titizlikle test edilir. Onaylandıktan sonra da sağlık bakanlıkları güvenliği sürekli denetler.\n\n### Hafif Yan Etkiler Normaldir\nAşıdan sonraki 24-48 saat içinde kolda hafif ağrı, yorgunluk veya hafif ateş hissedilmesi çok yaygındır. Bu bir hastalık değildir; bağışıklık sisteminizin güçlü bir kalkan inşa ettiğinin kanıtıdır!",
+        "keyTakeaways": [
+          "Aşılar hasta olmadan vücuda mikroplarla savaşmayı öğretir.",
+          "Ciddi yan etkiler son derece nadirdir; koldaki hafif ağrı aşının çalıştığını gösterir.",
+          "Aşı olmak henüz aşı olamayan bebekleri ve yaşlıları da korur.",
+          "Toplum ve aile sağlığı merkezlerinde rutin aşılar ücretsiz uygulanır."
+        ],
+        "vettedSources": [
+          { "name": "Aşılar Nasıl Çalışır?", "organization": "Dünya Sağlık Örgütü (WHO / DSÖ)", "url": "https://www.who.int/emergencies/diseases/novel-coronavirus-2019/covid-19-vaccines/how-do-vaccines-work", "year": 2023 },
+          { "name": "Ulusal Aşı Programı", "organization": "T.C. Sağlık Bakanlığı", "url": "https://asi.saglik.gov.tr", "year": 2024 }
+        ],
+        "reviewedBy": "Uzm. Hemşire Zeynep Demir",
+        "reviewerRole": "Aşı ve Bağışıklama Uzmanı, Toplum Sağlığı Koalisyonu",
+        "reviewedAt": "2024-11-04"
+      }
+    }
+  },
+  {
+    "id": "topic-3",
+    "slug": "medication-safety",
+    "category": "medications",
+    "icon": "Pill",
+    "readingLevel": "Grade 5-6 (Plain Language)",
+    "readMinutes": 4,
+    "translations": {
+      "en": {
+        "title": "Medication Safety: Taking Your Prescriptions Confidently",
+        "summary": "Simple guidelines to take medicines correctly, prevent unwanted side effects, and safely organize your daily pills.",
+        "content": "## Why Medication Timing and Dosing Matters\n\nPrescription medicines are carefully balanced recipes designed to keep your blood pressure, sugar, or infections under control. Taking too much can cause harm, and skipping doses can stop the medicine from protecting you.\n\n### 4 Golden Rules of Safe Medication\n1. **Never Share Medications**: A medicine that heals your friend might dangerously interact with your blood pressure or kidneys.\n2. **Keep an Updated Medicine Bag**: Bring all your pill bottles, vitamins, and herbal teas in a clean bag to your doctor or pharmacist so they can check for interactions.\n3. **Use a Pill Organizer Box**: A 7-day pill organizer (available for $2 at most pharmacies) helps you see immediately whether you took your morning or night pills.\n4. **Always Ask Before Stopping**: If a pill gives you nausea, dizziness, or an upset stomach, call your clinic right away. Never stop cold-turkey on blood pressure or mental health medications without your doctor guiding you.",
+        "keyTakeaways": [
+          "Always bring all your pill bottles and vitamins to every appointment.",
+          "Never share prescription medicines with friends or family.",
+          "Use a 7-day pill organizer to prevent missed or double doses.",
+          "Never stop high blood pressure pills suddenly without talking to your doctor."
+        ],
+        "vettedSources": [
+          { "name": "Medication Safety Basics", "organization": "Centers for Disease Control and Prevention (CDC)", "url": "https://www.cdc.gov/medicationsafety/basics.html", "year": 2023 },
+          { "name": "Medication Without Harm Global Patient Safety Challenge", "organization": "World Health Organization (WHO)", "url": "https://www.who.int/initiatives/medication-without-harm", "year": 2022 }
+        ],
+        "reviewedBy": "PharmD Amina Patel",
+        "reviewerRole": "Clinical Pharmacist & Health Literacy Educator",
+        "reviewedAt": "2024-09-18"
+      },
+      "es": {
+        "title": "Seguridad con sus Medicamentos: Guía para Tomarlos con Confianza",
+        "summary": "Pautas sencillas para tomar sus medicinas a tiempo, evitar interacciones peligrosas y organizar sus pastillas diarias.",
+        "content": "## Por Qué Importa el Horario y la Dosis\n\nLos medicamentos recetados están equilibrados para mantener su presión arterial, azúcar o infecciones bajo control. Tomar de más puede ser dañino, y olvidar dosis impide que el tratamiento funcione.\n\n### 4 Reglas de Oro\n1. **Nunca Comparta Medicinas**: Una pastilla que ayudó a su vecino puede ser peligrosa para sus riñones o presión.\n2. **Lleve su Bolsa de Medicinas**: Traiga todos sus frascos, vitaminas y hierbas a su cita médica para que el doctor o farmacéutico revise si hay choques entre ellos.\n3. **Use un Pastillero Semanal**: Un organizador de 7 días (cuesta unos $2) le permite ver de un vistazo si ya tomó su pastilla de la mañana o la noche.\n4. **Pregunte Antes de Suspender**: Si un medicamento le causa mareo o malestar estomacal, llame a su clínica. Nunca suspenda repentinamente pastillas de la presión sin la guía de su médico.",
+        "keyTakeaways": [
+          "Lleve todos sus frascos de pastillas y vitaminas a cada cita médica.",
+          "Nunca comparta medicamentos recetados con familiares o amigos.",
+          "Use un pastillero de 7 días para evitar dobles dosis u olvidos.",
+          "Nunca suspenda sus pastillas para la presión sin consultar a su médico."
+        ],
+        "vettedSources": [
+          { "name": "Seguridad en los medicamentos", "organization": "CDC en Español", "url": "https://www.cdc.gov/medicationsafety/basics.html", "year": 2023 },
+          { "name": "Medicamentos sin daño", "organization": "Organización Mundial de la Salud (OMS)", "url": "https://www.who.int/es/initiatives/medication-without-harm", "year": 2022 }
+        ],
+        "reviewedBy": "Farmacéutica Amina Patel, PharmD",
+        "reviewerRole": "Farmacéutica Clínica y Educadora de Salud",
+        "reviewedAt": "2024-09-18"
+      },
+      "tr": {
+        "title": "İlaç Güvenliği: Reçeteli İlaçlarınızı Güvenle Kullanın",
+        "summary": "İlaçlarınızı zamanında ve doğru almak, yan etkileri önlemek ve günlük haplarınızı güvenle düzenlemek için pratik rehber.",
+        "content": "## İlaç Saati ve Dozu Neden Çok Önemlidir?\n\nReçeteli ilaçlar tansiyonunuzu, şekerinizi veya enfeksiyonlarınızı dengede tutmak için hekiminiz tarafından hassas dozlarla ayarlanır. Fazla almak vücuda zarar verebilir, doz atlamak ise tedavinin etkisini sıfırlayabilir.\n\n### Güvenli İlaç Kullanımının 4 Altın Kuralı\n1. **İlaçlarınızı Asla Başkasıyla Paylaşmayın**: Bir yakınınıza iyi gelen bir ilaç, sizin tansiyonunuz veya böbrekleriniz için tehlikeli olabilir.\n2. **İlaç Çantanızı Doktorunuza Götürün**: Randevunuza giderken kullandığınız tüm hap kutularını, vitaminleri ve bitkisel çayları yanınızda götürün; doktorunuz veya eczacınız birbiriyle etkileşime girip girmediklerini kontrol etsin.\n3. **Haftalık İlaç Kutusu Kullanın**: 7 günlük bir ilaç kutusu sabah veya akşam hapınızı alıp almadığınızı bir bakışta görmenizi sağlar ve çift doz almayı önler.\n4. **Doktora Sormadan İlacı Kesmeyin**: Bir hap baş dönmesi veya mide bulantısı yaparsa hemen kliniğinizi arayın. Özellikle tansiyon ve kalp ilaçlarını doktorunuza danışmadan aniden bırakmayın.",
+        "keyTakeaways": [
+          "Kullandığınız tüm kutuları ve vitaminleri her randevuya yanınızda götürün.",
+          "Reçeteli ilaçlarınızı asla aile üyeleriyle veya komşularınızla paylaşmayın.",
+          "Atlamaları veya çift dozları önlemek için 7 günlük ilaç kutusu edinin.",
+          "Tansiyon veya kronik hastalık ilaçlarını doktorunuza sormadan aniden kesmeyin."
+        ],
+        "vettedSources": [
+          { "name": "Akılcı İlaç Kullanımı ve Güvenliği", "organization": "T.C. Sağlık Bakanlığı TİTCK", "url": "https://www.titck.gov.tr", "year": 2023 },
+          { "name": "Zararsız İlaç Kullanımı Küresel Girişimi", "organization": "Dünya Sağlık Örgütü (WHO / DSÖ)", "url": "https://www.who.int/initiatives/medication-without-harm", "year": 2022 }
+        ],
+        "reviewedBy": "Ecz. Canan Arslan",
+        "reviewerRole": "Klinik Eczacı ve Sağlık Okuryazarlığı Eğitmeni",
+        "reviewedAt": "2024-09-18"
+      }
+    }
+  },
+  {
+    "id": "topic-4",
+    "slug": "mental-health-support",
+    "category": "mental-health",
+    "icon": "Smile",
+    "readingLevel": "Grade 5-6 (Plain Language)",
+    "readMinutes": 4,
+    "translations": {
+      "en": {
+        "title": "Mental Health: Caring for Your Mind and Breaking Stigma",
+        "summary": "Understanding emotional stress, knowing when to seek compassionate help, and accessing free, confidential counseling.",
+        "content": "## Emotional Health is Real Health\n\nJust like our bodies can get a cold or high blood pressure, our minds can experience exhaustion, grief, and sadness. Feeling overwhelmed by work, family, or migration stress is not a sign of weakness—it is a human response to heavy burdens.\n\n### Common Signs of Emotional Overload\n- Trouble sleeping or waking up constantly worried.\n- Feeling deep sadness or losing interest in activities you once enjoyed.\n- Physical headaches or tight chest when thinking about daily obligations.\n\n### Free, Confidential Help is Available\nYou do not have to struggle alone. Calling or texting **988** connects you with kind, trained counselors 24 hours a day in English, Spanish, and over 200 languages. Your immigration status is never asked.",
+        "keyTakeaways": [
+          "Mental health is just as important as physical health; asking for help is strength.",
+          "The 988 Suicide & Crisis Lifeline is free, confidential, and bilingual.",
+          "Community clinics have counselors who speak your language and offer sliding scale payments.",
+          "Daily deep breathing, sleep routines, and talking to trusted friends help build resilience."
+        ],
+        "vettedSources": [
+          { "name": "Mental Health Overview", "organization": "World Health Organization (WHO)", "url": "https://www.who.int/news-room/fact-sheets/detail/mental-health-strengthening-our-response", "year": 2023 },
+          { "name": "988 Suicide & Crisis Lifeline Resources", "organization": "SAMHSA", "url": "https://www.samhsa.gov/find-help/988", "year": 2024 }
+        ],
+        "reviewedBy": "Dr. Carlos Mendoza, PsyD",
+        "reviewerRole": "Bilingual Clinical Psychologist & Community Advocate",
+        "reviewedAt": "2024-10-25"
+      },
+      "es": {
+        "title": "Salud Emocional: Cuidar Nuestra Mente y Romper el Estigma",
+        "summary": "Entender el estrés emocional, saber cuándo buscar apoyo compasivo y acceder a consejería gratuita y confidencial.",
+        "content": "## La Salud Emocional es Salud Verdadera\n\nAsí como nuestro cuerpo puede tener gripe o presión alta, nuestra mente puede sentir agotamiento, tristeza y dolor. Sentirse abrumado por el trabajo, la familia o las dificultades no es señal de debilidad: es una respuesta humana natural a cargas pesadas.\n\n### Señales Comunes de Sobrecarga\n- Dificultad para dormir o despertarse con angustia continua.\n- Sentir tristeza constante o perder el interés en cosas que antes disfrutaba.\n- Dolores de cabeza o tensión en el pecho por el estrés cotidiano.\n\n### Hay Ayuda Gratuita y Confidencial\nNo tiene que enfrentar esto a solas. Marcar o enviar un mensaje al **988** le comunica con consejeros amables y capacitados las 24 horas del día en español e inglés. Nunca se pregunta su estatus migratorio.",
+        "keyTakeaways": [
+          "Cuidar su mente es igual de valioso que cuidar el cuerpo; pedir ayuda es valentía.",
+          "La línea 988 es gratis, confidencial y disponible en español.",
+          "Las clínicas comunitarias tienen terapeutas bilingües a bajo costo.",
+          "Respirar hondo, dormir bien y hablar con personas de confianza alivia la carga."
+        ],
+        "vettedSources": [
+          { "name": "Salud Mental y Bienestar", "organization": "Organización Mundial de la Salud (OMS)", "url": "https://www.who.int/es/news-room/fact-sheets/detail/mental-health-strengthening-our-response", "year": 2023 },
+          { "name": "Línea de Prevención del Suicidio y Crisis 988", "organization": "SAMHSA en Español", "url": "https://www.samhsa.gov/find-help/988", "year": 2024 }
+        ],
+        "reviewedBy": "Dr. Carlos Mendoza, PsyD",
+        "reviewerRole": "Psicólogo Clínico Bilingüe y Defensor Comunitario",
+        "reviewedAt": "2024-10-25"
+      },
+      "tr": {
+        "title": "Ruh Sağlığı: Zihninizi Korumak ve Ön Yargıları Kırmak",
+        "summary": "Duygusal stresi anlamak, ne zaman şefkatli destek isteyeceğini bilmek ve ücretsiz, gizli danışmanlığa ulaşmak.",
+        "content": "## Ruh Sağlığı da Beden Sağlığı Kadar Gerçektir\n\nTıpkı bedenimizin nezle olması veya tansiyonumuzun yükselmesi gibi zihnimiz de yorulabilir, keder ve kaygı hissedebilir. İş, aile veya hayat zorlukları karşısında bunalmak bir zayıflık işareti değildir; ağır yüklere karşı insani bir tepkidir.\n\n### Zihinsel Yorgunluğun Yaygın Belirtileri\n- Uykuya dalmakta zorlanmak veya sürekli endişeyle uyanmak.\n- Önceden keyif aldığınız şeylere karşı ilginizi kaybetmek ve derin hüzün.\n- Günlük sorumlulukları düşünürken baş ağrısı veya göğüste baskı hissetmek.\n\n### Yalnız Değilsiniz, Destek Almak Güçtür\nBu zorluklarla tek başınıza mücadele etmek zorunda değilsiniz. Toplum sağlığı merkezlerindeki psikolojik danışmanlar ve kriz destek hatları gizli ve şefkatli destek sunar. Yardım istemek zayıflık değil, kendinize ve ailenize verdiğiniz değerin göstergesidir.",
+        "keyTakeaways": [
+          "Ruh sağlığı en az beden sağlığı kadar önemlidir; yardım istemek cesarettir.",
+          "Toplum sağlığı merkezlerinde ücretsiz veya düşük maliyetli danışmanlık sağlanır.",
+          "Derin nefes egzersizleri, düzenli uyku ve güvenilen yakınlarla konuşmak direnci artırır.",
+          "Duygusal sıkıntılar çözümsüz değildir, uzman desteğiyle aşılabilir."
+        ],
+        "vettedSources": [
+          { "name": "Ruh Sağlığı ve Psikososyal Destek", "organization": "Dünya Sağlık Örgütü (WHO / DSÖ)", "url": "https://www.who.int/news-room/fact-sheets/detail/mental-health-strengthening-our-response", "year": 2023 },
+          { "name": "Toplum Ruh Sağlığı Hizmetleri Kılavuzu", "organization": "T.C. Sağlık Bakanlığı", "url": "https://hsgm.saglik.gov.tr", "year": 2024 }
+        ],
+        "reviewedBy": "Uzm. Psk. Elif Yıldız",
+        "reviewerRole": "Klinik Psikolog ve Toplum Sağlığı Savunucusu",
+        "reviewedAt": "2024-10-25"
+      }
+    }
+  },
+  {
+    "id": "topic-5",
+    "slug": "doctor-appointment-prep",
+    "category": "navigation",
+    "icon": "CalendarCheck",
+    "readingLevel": "Grade 5-6 (Plain Language)",
+    "readMinutes": 3,
+    "translations": {
+      "en": {
+        "title": "Preparing for Your Doctor Appointment: Getting the Care You Deserve",
+        "summary": "How to ask for an interpreter, 3 questions you should always ask, and what documents to bring so you never feel rushed.",
+        "content": "## You Have the Right to Understand Your Health Care\n\nVisiting the clinic can feel intimidating or rushed. Remember that doctors and nurses are here to serve you. You are the expert on your own body, and you deserve clear answers in language you understand.\n\n### Before You Leave Home\n1. **Gather All Your Medications**: Put all your pill bottles, vitamins, and supplements in a bag.\n2. **Write Down Your Top 2 Questions**: Doctors usually have 15 minutes. Starting with your most urgent concern ensures it gets answered first.\n3. **Ask for an In-Person or Phone Interpreter**: By law in most community clinics, you have the right to a certified medical interpreter at zero cost. Never rely on children to translate medical terms.\n\n### 3 Questions to Always Ask\n1. \"What is my main problem?\"\n2. \"What do I need to do next, and why is it important?\"\n3. \"Can you write this down or repeat it simply so I can explain it to my family?\"",
+        "keyTakeaways": [
+          "You have the legal right to a free, trained medical interpreter.",
+          "Bring all your pill bottles in a bag so the clinic can verify them.",
+          "Always ask: \"What is my main problem, and what do I do next?\"",
+          "If you do not understand a medical term, politely say: \"Please explain that in simple words.\""
+        ],
+        "vettedSources": [
+          { "name": "Ask Me 3: Good Questions for Your Good Health", "organization": "Institute for Healthcare Improvement (IHI)", "url": "https://www.ihi.org/resources/tools/ask-me-3-good-questions-your-good-health", "year": 2023 },
+          { "name": "Talking to Your Doctor", "organization": "National Institute on Aging (NIH)", "url": "https://www.nia.nih.gov/health/talking-your-doctor", "year": 2023 }
+        ],
+        "reviewedBy": "Community Navigator Rosa Martinez",
+        "reviewerRole": "Certified Medical Interpreter & Health Navigator",
+        "reviewedAt": "2024-11-10"
+      },
+      "es": {
+        "title": "Cómo Prepararse para su Cita Médica: Obtenga la Atención que Merece",
+        "summary": "Cómo solicitar un intérprete gratuito, 3 preguntas clave que siempre debe hacer y qué llevar para no sentirse apresurado.",
+        "content": "## Usted Tiene Derecho a Entender su Atención Médica\n\nIr a la clínica puede sentirse intimidante o apresurado. Recuerde que el personal médico está para servirle. Usted es quien mejor conoce su cuerpo y merece respuestas claras en su idioma.\n\n### Antes de Salir de Casa\n1. **Junte sus Medicamentos en una Bolsa**: Lleve todos sus frascos de pastillas, vitaminas y hierbas naturales.\n2. **Escriba sus 2 Dudas Principales**: Las consultas suelen durar 15 minutos. Comenzar con lo que más le preocupa asegura que se resuelva primero.\n3. **Pida un Intérprete Médico Certificado**: Por ley, usted tiene derecho a un intérprete médico profesional sin costo alguno. Nunca ponga a sus hijos a traducir términos de salud difíciles.\n\n### 3 Preguntas de Oro para su Doctor\n1. \"¿Cuál es mi problema principal?\"\n2. \"¿Qué tengo que hacer ahora y por qué es importante?\"\n3. \"¿Podría repetirlo con palabras sencillas para que se lo explique a mi familia?\"",
+        "keyTakeaways": [
+          "Tiene derecho por ley a un intérprete médico profesional y gratuito.",
+          "Lleve todos sus frascos de medicinas en una bolsa a la consulta.",
+          "Haga siempre las 3 preguntas clave sobre su diagnóstico y próximos pasos.",
+          "Si no entiende una palabra técnica, diga: \"Por favor explíquemelo en palabras sencillas\"."
+        ],
+        "vettedSources": [
+          { "name": "Haga 3 Preguntas Clave", "organization": "Institute for Healthcare Improvement (IHI)", "url": "https://www.ihi.org/resources/tools/ask-me-3-good-questions-your-good-health", "year": 2023 },
+          { "name": "Cómo hablar con su médico", "organization": "Instituto Nacional sobre el Envejecimiento (NIH)", "url": "https://www.nia.nih.gov/espanol/hablar-su-medico", "year": 2023 }
+        ],
+        "reviewedBy": "Promotora de Salud Rosa Martínez",
+        "reviewerRole": "Intérprete Médica Certificada y Navegadora de Salud Comunitaria",
+        "reviewedAt": "2024-11-10"
+      },
+      "tr": {
+        "title": "Doktor Randevusuna Hazırlık: Hak Ettiğiniz Sağlık Hizmetini Alın",
+        "summary": "Randevuda aceleye gelmemek, tercüman hakkını kullanmak ve doktora mutlaka sorulması gereken 3 altın soru rehberi.",
+        "content": "## Sağlık Hizmetinizi Tam Anlamaya Hakkınız Var\n\nSağlık kuruluşuna gitmek bazen kafa karıştırıcı veya aceleyle geçmiş gibi hissettirebilir. Doktorlar ve hemşireler size hizmet etmek için oradadır. Kendi bedeninizi en iyi siz tanırsınız ve kendi dilinizde net yanıtlar almayı hak edersiniz.\n\n### Evden Çıkmadan Önce\n1. **İlaçlarınızı Bir Torbaya Koyun**: Kullandığınız tüm reçeteli hap kutularını, tansiyon ilaçlarını ve vitaminleri yanınıza alın.\n2. **En Önemli 2 Sorunuzu Bir Kağıda Yazın**: Randevular genelde 15 dakikadır. En çok endişelendiğiniz sorudan başlamak onun mutlaka yanıtlanmasını sağlar.\n3. **Tıbbi Tercüman Talep Edin**: Yabancı bir ülkedeyseniz veya dili rahat konuşamıyorsanız, çoğu klinikte ücretsiz profesyonel tıbbi tercüman isteme hakkınız vardır. Çocuklarınızdan tıbbi terimleri tercüme etmelerini istemeyin.\n\n### Doktorunuza Mutlaka Soracağınız 3 Soru\n1. \"Benim temel sağlık sorunum nedir?\"\n2. \"Şimdi ne yapmam gerekiyor ve bu neden önemli?\"\n3. \"Bunu aileme de anlatabilmem için daha sade bir dille tekrar edebilir misiniz?\"",
+        "keyTakeaways": [
+          "Kliniklerde ücretsiz profesyonel tıbbi tercüman talep etme yasal hakkınız vardır.",
+          "Kullandığınız tüm kutuları bir poşete koyup doktora gösterin.",
+          "Her zaman 3 altın soruyu sorun: \"Sorunum ne, şimdi ne yapmalıyım ve neden önemli?\"",
+          "Tıbbi bir terimi anlamadığınızda: \"Lütfen bunu daha sade kelimelerle açıklar mısınız?\" deyin."
+        ],
+        "vettedSources": [
+          { "name": "Sağlığınız İçin 3 Doğru Soru Sorun (Ask Me 3)", "organization": "Institute for Healthcare Improvement (IHI)", "url": "https://www.ihi.org/resources/tools/ask-me-3-good-questions-your-good-health", "year": 2023 },
+          { "name": "Doktorunuzla Etkili İletişim Rehberi", "organization": "Ulusal Yaşlanma Enstitüsü (NIH)", "url": "https://www.nia.nih.gov/health/talking-your-doctor", "year": 2023 }
+        ],
+        "reviewedBy": "Sağlık Rehberi Sevgi Yılmaz",
+        "reviewerRole": "Sertifikalı Tıbbi İletişim Uzmanı ve Toplum Rehberi",
+        "reviewedAt": "2024-11-10"
+      }
+    }
+  }
+]

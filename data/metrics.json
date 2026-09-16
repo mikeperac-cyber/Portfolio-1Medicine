@@ -1,0 +1,51 @@
+{
+  "totalUsersServed": 2480,
+  "topicsViewedTotal": 7390,
+  "avgQuizImprovement": "+38.4%",
+  "totalGuidesPrinted": 612,
+  "satisfactionRating": "96.2%",
+  "quizDeltas": [
+    { "topic": "Diabetes Prevention", "preScore": 48, "postScore": 89, "improvement": 41 },
+    { "topic": "Vaccine Basics", "preScore": 54, "postScore": 92, "improvement": 38 },
+    { "topic": "Medication Safety", "preScore": 45, "postScore": 86, "improvement": 41 },
+    { "topic": "Mental Health Stigma", "preScore": 52, "postScore": 88, "improvement": 36 },
+    { "topic": "Doctor Appt Prep", "preScore": 60, "postScore": 94, "improvement": 34 }
+  ],
+  "topicViews": [
+    { "name": "Diabetes Prevention", "views": 2450 },
+    { "name": "Medication Safety", "views": 1820 },
+    { "name": "Vaccine Basics", "views": 1410 },
+    { "name": "Doctor Appt Prep", "views": 980 },
+    { "name": "Mental Health", "views": 730 }
+  ],
+  "anonymousFeedback": [
+    {
+      "id": "fb-1",
+      "date": "Today",
+      "topic": "Diabetes Prevention",
+      "rating": 5,
+      "comment": "The plate method diagram was so easy to explain to my grandmother. She loved it!"
+    },
+    {
+      "id": "fb-2",
+      "date": "Today",
+      "topic": "Preparing for Doctor Appointments",
+      "rating": 5,
+      "comment": "I printed the sheet and showed it to the receptionist to ask for a Spanish interpreter."
+    },
+    {
+      "id": "fb-3",
+      "date": "Yesterday",
+      "topic": "Medication Safety",
+      "rating": 5,
+      "comment": "We used the 7-day pill organizer advice for my dad who was accidentally taking his pill twice."
+    },
+    {
+      "id": "fb-4",
+      "date": "2 days ago",
+      "topic": "Vaccination Basics",
+      "rating": 5,
+      "comment": "Aşı sonrası hafif kol ağrısının neden normal olduğunu sade dille açıklamanız çok rahatlatıcı oldu."
+    }
+  ]
+}

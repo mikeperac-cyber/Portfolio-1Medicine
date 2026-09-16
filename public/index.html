@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HealthBridge — Multilingual Community Health Service</title>
+  <meta name="description" content="Doctor-reviewed plain-language health guides, free clinic directory, printable QR guides, and anonymous quizzes in English, Spanish, and Turkish. Zero login required." />
+  <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <!-- Urgent Emergency & Crisis Banner (Always accessible) -->
+  <aside class="emergency-bar" role="complementary" aria-label="Emergency and Crisis Notice">
+    <div class="container emergency-content">
+      <span class="emergency-badge">URGENT</span>
+      <span id="emergencyText">Medical emergency? Call 911 (or 112) immediately. Mental health crisis? Call or text 988 for free 24/7 confidential support.</span>
+      <button class="emergency-dismiss" onclick="this.parentElement.parentElement.style.display='none'" aria-label="Dismiss banner">&times;</button>
+    </div>
+  </aside>
+
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="#/" class="logo-link" id="siteLogo">
+        <span class="logo-icon">🏥</span>
+        <span class="logo-text">HealthBridge</span>
+        <span class="logo-badge">No Login</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="#/" class="nav-link" data-view="home" id="navHome">Home</a>
+        <a href="#/topics" class="nav-link" data-view="topics" id="navTopics">Health Topics</a>
+        <a href="#/clinics" class="nav-link" data-view="clinics" id="navClinics">Find a Clinic</a>
+        <a href="#/ethics" class="nav-link" data-view="ethics" id="navEthics">Ethics & Guardrails</a>
+        <a href="#/admin" class="nav-link" data-view="admin" id="navAdmin">Impact Dashboard</a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Language Switcher -->
+        <div class="lang-selector">
+          <label for="localeSelect" class="sr-only">Choose Language</label>
+          <select id="localeSelect" aria-label="Choose Language">
+            <option value="en">English (EN)</option>
+            <option value="es">Español (ES)</option>
+            <option value="tr">Türkçe (TR)</option>
+          </select>
+        </div>
+
+        <!-- Quick Print Button -->
+        <button id="quickPrintBtn" class="btn btn-secondary btn-sm" onclick="App.showPrintModal()" title="Print outreach flyer">
+          🖨️ <span id="quickPrintText">Print Handout</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content App Mount Point -->
+  <main id="app" class="main-content" role="main">
+    <!-- Views are dynamically rendered here via app.js -->
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading HealthBridge resources...</p>
+    </div>
+  </main>
+
+  <!-- Interactive Quiz Modal -->
+  <div id="quizModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="quizModalTitle" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="quiz-badge-container">
+          <span id="quizBadge" class="badge">Pre-Reading Quiz</span>
+          <span class="badge badge-secondary">100% Anonymous</span>
+        </div>
+        <button class="modal-close" onclick="App.closeQuizModal()" aria-label="Close Quiz">&times;</button>
+      </div>
+      <div class="modal-body" id="quizModalContent">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Printable Flyer Modal / Preview -->
+  <div id="printModal" class="modal-backdrop print-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="printTitle" style="display: none;">
+    <div class="modal-card print-card">
+      <div class="modal-header no-print">
+        <h2 id="printModalHeading">Community Outreach Handout</h2>
+        <div class="modal-actions">
+          <button class="btn btn-primary btn-sm" onclick="window.print()">🖨️ Print Now</button>
+          <button class="modal-close" onclick="App.closePrintModal()" aria-label="Close Print Preview">&times;</button>
+        </div>
+      </div>
+      <div class="modal-body" id="printFlyerArea">
+        <!-- Printable single-page content injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Helper Modal -->
+  <div id="aiModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="aiModalTitle" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="aiModalTitle">💡 Plain-Language AI Explainer</h3>
+        <button class="modal-close" onclick="App.closeAiModal()" aria-label="Close AI explainer">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="safety-badge-alert">
+          <span class="icon">🛡️</span>
+          <div>
+            <strong>Strict Safety Guardrail Active:</strong>
+            <p id="aiModalNotice">This AI tool only explains vetted text from official health agencies. It cannot diagnose symptoms, prescribe medications, or replace a doctor's examination.</p>
+          </div>
+        </div>
+
+        <form id="aiPromptForm" onsubmit="App.handleAiPromptSubmit(event)">
+          <label for="aiUserPrompt" class="form-label">Ask an educational question about this topic:</label>
+          <div class="input-with-button">
+            <input type="text" id="aiUserPrompt" class="form-input" placeholder="e.g. Can you explain the daily water tip in even simpler words?" required />
+            <button type="submit" class="btn btn-primary" id="aiSubmitBtn">Ask AI</button>
+          </div>
+        </form>
+
+        <div id="aiResponseContainer" class="ai-response-box" style="display: none;">
+          <div id="aiResponseText" class="ai-text"></div>
+          <div class="ai-sources" id="aiSourcesList"></div>
+          <div class="ai-disclaimer" id="aiDisclaimer">Educational only; not medical advice.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">🏥 HealthBridge Service</div>
+        <p id="footerDisclaimer">Educational only; not medical advice. Built for community health equity with zero trackers, zero passwords, and complete privacy.</p>
+        <p class="footer-meta">Official Vetted Content from WHO, CDC &amp; Ministry of Health.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#/">Home</a></li>
+          <li><a href="#/topics">Health Guides</a></li>
+          <li><a href="#/clinics">Clinics &amp; Care</a></li>
+          <li><a href="#/ethics">Safety &amp; Guardrails</a></li>
+          <li><a href="#/admin">Impact Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="footer-helplines">
+        <h4>Emergency Helplines</h4>
+        <p><strong>Medical Emergency:</strong> 911 (US) / 112 (EU/TR)</p>
+        <p><strong>Mental Health &amp; Crisis:</strong> 988 (Call or Text)</p>
+        <p><strong>Poison Control:</strong> 1-800-222-1222</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Community Health Bridge Project. Free and open for schools, clinics, and community organizations.</p>
+    </div>
+  </footer>
+
+  <!-- Guardrail Validator (shared between Node and Browser) -->
+  <script src="/js/guardrails.js"></script>
+  <!-- Client Application Logic -->
+  <script src="/js/app.js"></script>
+</body>
+</html>

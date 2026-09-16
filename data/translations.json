@@ -1,0 +1,311 @@
+{
+  "en": {
+    "site": {
+      "title": "Community Health Bridge",
+      "tagline": "Clear, trusted health information in your language.",
+      "emergencyNotice": "If you have a medical emergency, call 911 or go to the nearest emergency room immediately.",
+      "crisisNotice": "Need someone to talk to? Call or text 988 for free, confidential mental health support 24/7.",
+      "disclaimer": "Educational only; not medical advice. Always consult a qualified healthcare provider."
+    },
+    "nav": {
+      "home": "Home",
+      "topics": "Health Topics",
+      "directory": "Find a Clinic",
+      "ethics": "Ethics & Sources",
+      "admin": "Impact Dashboard"
+    },
+    "home": {
+      "heroTitle": "Health knowledge you can trust, in words that make sense.",
+      "heroSubtitle": "Simple, doctor-reviewed explainers on diabetes, vaccines, medicines, and clinics—free for our entire community with zero login required.",
+      "exploreTopics": "Browse Health Topics",
+      "findClinics": "Find Free & Low-Cost Clinics",
+      "topicsHeading": "Essential Health Explainers",
+      "topicsSubheading": "Vetted by community physicians and public health leaders.",
+      "readTime": "min read",
+      "communityPledgeTitle": "Our Community Promise",
+      "pledge1Title": "No Medical Diagnosis",
+      "pledge1Desc": "We do not guess diagnoses or triage symptoms. We provide clear education to help you advocate for yourself.",
+      "pledge2Title": "Zero Personal Data Collected",
+      "pledge2Desc": "No account or login required. Quizzes, surveys, and page visits are 100% anonymous.",
+      "pledge3Title": "Official Sources Only",
+      "pledge3Desc": "All content is adapted from the WHO, CDC, and health ministries with full citations."
+    },
+    "topics": {
+      "title": "Health Topics",
+      "subtitle": "Clear, plain-language guides to keep you and your family safe and healthy.",
+      "keyTakeaways": "Key Takeaways",
+      "officialSources": "Official Sources & Citations",
+      "reviewedBy": "Reviewed by",
+      "reviewedOn": "Reviewed on",
+      "preQuizCta": "Take Pre-Quiz (2 min)",
+      "postQuizCta": "Check What You Learned",
+      "printHandout": "Print Outreach Handout / QR Code",
+      "aiSummaryButton": "Ask AI to Simplify / Summarize",
+      "aiSummaryTitle": "AI Health Explainer",
+      "aiSummaryDesc": "This AI helper summarizes vetted text from official health agencies only.",
+      "listenAloud": "Listen to Summary",
+      "stopListening": "Stop Audio"
+    },
+    "directory": {
+      "title": "Community Clinic & Resource Directory",
+      "subtitle": "Find trusted neighborhood clinics offering low-cost care, sliding-scale fees, free vaccines, and interpreter services.",
+      "searchPlaceholder": "Search by clinic name, street, or neighborhood...",
+      "filterServices": "Filter by Service",
+      "allServices": "All Services",
+      "slidingScale": "Sliding Scale / Low Cost",
+      "freeVaccines": "Free Immunizations",
+      "mentalHealth": "Mental Health Counseling",
+      "dental": "Dental Care",
+      "languages": "Languages Spoken",
+      "allLanguages": "All Languages",
+      "hours": "Hours",
+      "phone": "Call Clinic",
+      "getDirections": "Get Directions (Map)",
+      "wheelchairAccess": "Wheelchair Accessible",
+      "acceptsUninsured": "Welcomes Uninsured Patients"
+    },
+    "quiz": {
+      "preTitle": "Pre-Reading Knowledge Check",
+      "postTitle": "Post-Reading Knowledge Check",
+      "question": "Question",
+      "of": "of",
+      "next": "Next Question",
+      "finish": "View Anonymous Results",
+      "scoreLabel": "Your Score",
+      "explanation": "Why this matters:",
+      "anonymousNotice": "This quiz is strictly anonymous. No names, emails, or personal identifiers are stored.",
+      "retake": "Retake Quiz",
+      "backToTopic": "Back to Topic Explainer"
+    },
+    "ai": {
+      "heading": "Ask AI to Simplify This Topic",
+      "promptPlaceholder": "e.g., 'Explain the healthy plate method in simpler words' or 'What should I ask my pharmacist?'",
+      "submit": "Simplify Text",
+      "loading": "Checking vetted public-health sources...",
+      "disclaimer": "Educational only; not medical advice.",
+      "citationsLabel": "Grounded in official sources:",
+      "guardrailWarning": "For your safety, this educational tool cannot diagnose diseases, assess symptoms, or prescribe medication dosages. Please contact a healthcare provider or neighborhood clinic."
+    },
+    "ethics": {
+      "title": "Ethics, Standards & Sources",
+      "subtitle": "Transparency is at the heart of community health. Here is how we protect your safety and privacy.",
+      "whyNoDiagnosisTitle": "Why We Strictly Exclude AI Diagnosis and Symptom Triage",
+      "whyNoDiagnosisText": "Underserved communities have historically faced disparities in healthcare access and algorithmic bias. AI medical diagnosis tools frequently hallucinate, misinterpret non-Western symptom descriptions, or recommend inaccessible specialists. By strictly restricting our AI to summarizing pre-vetted official public health text, we eliminate algorithmic risk and prioritize human clinic connection.",
+      "workflowTitle": "4-Stage Clinical Review Workflow"
+    },
+    "admin": {
+      "title": "Community Impact & Analytics Dashboard",
+      "subtitle": "Real-time anonymized telemetry measuring community reach and educational impact with zero user tracking.",
+      "usersServed": "Community Members Reached",
+      "topicsViewed": "Total Explainers Read",
+      "avgImprovement": "Quiz Knowledge Delta",
+      "guidesPrinted": "Outreach Handouts Printed"
+    }
+  },
+  "es": {
+    "site": {
+      "title": "Salud Comunitaria",
+      "tagline": "Información de salud clara y confiable en su propio idioma.",
+      "emergencyNotice": "Si tiene una emergencia médica, llame al 911 o acuda a la sala de emergencias de inmediato.",
+      "crisisNotice": "¿Necesita hablar con alguien? Llame o envíe un mensaje al 988 para apoyo emocional gratuito 24/7 en español.",
+      "disclaimer": "Solo con fines educativos; no es consejo médico. Siempre consulte con un profesional de la salud calificado."
+    },
+    "nav": {
+      "home": "Inicio",
+      "topics": "Temas de Salud",
+      "directory": "Buscar Clínica",
+      "ethics": "Ética y Fuentes",
+      "admin": "Panel de Impacto"
+    },
+    "home": {
+      "heroTitle": "Conocimiento de salud en el que puede confiar, en palabras sencillas.",
+      "heroSubtitle": "Guías revisadas por médicos comunitarios sobre diabetes, vacunas, medicamentos y clínicas, gratis para todos sin necesidad de registrarse.",
+      "exploreTopics": "Explorar Temas de Salud",
+      "findClinics": "Buscar Clínicas Gratuitas y de Bajo Costo",
+      "topicsHeading": "Guías Esenciales de Salud",
+      "topicsSubheading": "Revisadas por médicos comunitarios y especialistas en salud pública.",
+      "readTime": "min de lectura",
+      "communityPledgeTitle": "Nuestro Compromiso Comunitario",
+      "pledge1Title": "Sin Diagnósticos Médicos",
+      "pledge1Desc": "No diagnosticamos ni evaluamos síntomas. Brindamos educación clara para que tome decisiones informadas con su médico.",
+      "pledge2Title": "Cero Datos Personales Recopilados",
+      "pledge2Desc": "No requiere crear cuenta ni iniciar sesión. Las evaluaciones, cuestionarios y visitas son 100% anónimas.",
+      "pledge3Title": "Fuentes Oficiales Exclusivas",
+      "pledge3Desc": "Todo el contenido proviene de la OMS, los CDC y ministerios de salud oficiales con citas verificables."
+    },
+    "topics": {
+      "title": "Temas de Salud",
+      "subtitle": "Guías claras en lenguaje sencillo para cuidar su bienestar y el de su familia.",
+      "keyTakeaways": "Puntos Clave",
+      "officialSources": "Fuentes Oficiales y Citas Médicas",
+      "reviewedBy": "Revisado por",
+      "reviewedOn": "Fecha de revisión",
+      "preQuizCta": "Hacer Evaluación Inicial (2 min)",
+      "postQuizCta": "Comprobar Aprendizaje",
+      "printHandout": "Imprimir Hoja Comunitaria / Código QR",
+      "aiSummaryButton": "Pedir a la IA que Resuma o Aclare",
+      "aiSummaryTitle": "Asistente Educativo de Salud",
+      "aiSummaryDesc": "Este asistente resume únicamente textos verificados de organismos de salud oficiales.",
+      "listenAloud": "Escuchar Resumen en Audio",
+      "stopListening": "Detener Audio"
+    },
+    "directory": {
+      "title": "Directorio Comunitario de Clínicas y Recursos",
+      "subtitle": "Encuentre clínicas comunitarias con atención a bajo costo, escala móvil de pagos, vacunas gratuitas e intérpretes bilingües.",
+      "searchPlaceholder": "Buscar por nombre de clínica, calle o vecindario...",
+      "filterServices": "Filtrar por Servicio",
+      "allServices": "Todos los Servicios",
+      "slidingScale": "Escala Móvil / Bajo Costo",
+      "freeVaccines": "Vacunas Gratuitas",
+      "mentalHealth": "Consejería y Salud Mental",
+      "dental": "Cuidado Dental",
+      "languages": "Idiomas Disponibles",
+      "allLanguages": "Todos los Idiomas",
+      "hours": "Horario de Atención",
+      "phone": "Llamar a la Clínica",
+      "getDirections": "Cómo Llegar (Mapa)",
+      "wheelchairAccess": "Acceso para Sillas de Ruedas",
+      "acceptsUninsured": "Atiende a Pacientes sin Seguro"
+    },
+    "quiz": {
+      "preTitle": "Evaluación Inicial de Conocimientos",
+      "postTitle": "Evaluación de Aprendizaje",
+      "question": "Pregunta",
+      "of": "de",
+      "next": "Siguiente Pregunta",
+      "finish": "Ver Resultados Anónimos",
+      "scoreLabel": "Su Puntuación",
+      "explanation": "Por qué es importante:",
+      "anonymousNotice": "Esta evaluación es estrictamente anónima. No se guardan nombres, correos ni datos identificables.",
+      "retake": "Repetir Evaluación",
+      "backToTopic": "Volver a la Guía del Tema"
+    },
+    "ai": {
+      "heading": "Pida a la IA que Explique en Palabras Más Fáciles",
+      "promptPlaceholder": "Ejemplo: '¿Cómo explico el plato saludable a mis hijos?' o '¿Qué le pregunto al farmacéutico?'",
+      "submit": "Simplificar Texto",
+      "loading": "Consultando fuentes oficiales verificadas...",
+      "disclaimer": "Solo con fines educativos; no es consejo médico.",
+      "citationsLabel": "Basado en las fuentes oficiales:",
+      "guardrailWarning": "Por su seguridad, esta herramienta educativa no puede diagnosticar enfermedades, evaluar síntomas ni recomendar dosis de medicamentos. Por favor consulte a su clínica local."
+    },
+    "ethics": {
+      "title": "Ética, Estándares y Fuentes Oficiales",
+      "subtitle": "La transparencia y la equidad son el pilar de la salud comunitaria. Conozca cómo cuidamos su seguridad.",
+      "whyNoDiagnosisTitle": "Por Qué Excluimos Estrictamente el Diagnóstico por IA y el Triaje de Síntomas",
+      "whyNoDiagnosisText": "Las comunidades desatendidas históricamente han enfrentado brechas en la atención y sesgos en algoritmos automáticos. Los sistemas de IA médica a menudo inventan datos, malinterpretan descripciones culturales de síntomas o sugieren especialistas inaccesibles. Al limitar estrictamente nuestra IA a resumir textos ya validados de la OMS y los CDC, protegemos a nuestra comunidad y fortalecemos el lazo con los centros de salud locales.",
+      "workflowTitle": "Proceso Clínico de Revisión en 4 Etapas"
+    },
+    "admin": {
+      "title": "Panel de Impacto Comunitario y Métricas",
+      "subtitle": "Telemetría totalmente anónima para medir el alcance y la efectividad educativa sin rastrear a los usuarios.",
+      "usersServed": "Personas Alcanzadas",
+      "topicsViewed": "Guías Leídas",
+      "avgImprovement": "Mejora en Evaluaciones",
+      "guidesPrinted": "Hojas de Orientación Impresas"
+    }
+  },
+  "tr": {
+    "site": {
+      "title": "Toplum Sağlığı Köprüsü",
+      "tagline": "Kendi dilinizde, açık ve güvenilir sağlık bilgisi.",
+      "emergencyNotice": "Tıbbi bir acil durumunuz varsa derhal 112'yi (veya 911) arayın veya en yakın acil servise başvurun.",
+      "crisisNotice": "Biriyle konuşmaya mı ihtiyacınız var? 7/24 ücretsiz ve gizli duygusal destek için kriz hattını arayın.",
+      "disclaimer": "Yalnızca eğitim amaçlıdır; tıbbi tavsiye niteliği taşımaz. Her zaman uzman bir sağlık çalışanına danışın."
+    },
+    "nav": {
+      "home": "Ana Sayfa",
+      "topics": "Sağlık Konuları",
+      "directory": "Klinik Bul",
+      "ethics": "Etik ve Kaynaklar",
+      "admin": "Etki Paneli"
+    },
+    "home": {
+      "heroTitle": "Anlaşılır bir dille, güvenebileceğiniz sağlık bilgisi.",
+      "heroSubtitle": "Diyabet, aşılar, ilaç güvenliği ve sağlık merkezleri hakkında doktor onaylı sade kılavuzlar — giriş yapmadan herkes için ücretsiz.",
+      "exploreTopics": "Sağlık Konularını İncele",
+      "findClinics": "Ücretsiz ve Uygun Maliyetli Klinikleri Bul",
+      "topicsHeading": "Temel Sağlık Açıklamaları",
+      "topicsSubheading": "Toplum hekimleri ve halk sağlığı uzmanları tarafından onaylanmıştır.",
+      "readTime": "dk okuma",
+      "communityPledgeTitle": "Toplumsal Taahhüdümüz",
+      "pledge1Title": "Tıbbi Teşhis Yok",
+      "pledge1Desc": "Belirtileri değerlendirmiyor veya teşhis koymuyoruz. Doktorunuzla bilinçli kararlar alabilmeniz için anlaşılır eğitim sunuyoruz.",
+      "pledge2Title": "Sıfır Kişisel Veri Toplama",
+      "pledge2Desc": "Hesap açmak veya giriş yapmak gerekmez. Testler, anketler ve sayfa ziyaretleri %100 anonimdir.",
+      "pledge3Title": "Yalnızca Resmi Kaynaklar",
+      "pledge3Desc": "Tüm içerik DSÖ (WHO), Sağlık Bakanlığı ve CDC kaynaklarından doğrulanabilir alıntılarla hazırlanmıştır."
+    },
+    "topics": {
+      "title": "Sağlık Konuları",
+      "subtitle": "Sizin ve ailenizin sağlığını korumak için sade ve anlaşılır dille hazırlanmış rehberler.",
+      "keyTakeaways": "Önemli Noktalar",
+      "officialSources": "Resmi Kaynaklar ve Tıbbi Alıntılar",
+      "reviewedBy": "İnceleyen",
+      "reviewedOn": "İnceleme Tarihi",
+      "preQuizCta": "Ön Değerlendirmeyi Yap (2 dk)",
+      "postQuizCta": "Öğrendiklerinizi Test Edin",
+      "printHandout": "Toplum Broşürünü / QR Kodunu Yazdır",
+      "aiSummaryButton": "Yapay Zekadan Özetlemesini İste",
+      "aiSummaryTitle": "Eğitim Amaçlı Sağlık Asistanı",
+      "aiSummaryDesc": "Bu asistan yalnızca resmi sağlık kurumlarının doğrulanmış metinlerini özetler.",
+      "listenAloud": "Özeti Sesli Dinle",
+      "stopListening": "Sesi Durdur"
+    },
+    "directory": {
+      "title": "Toplum Klinikleri ve Kaynak Rehberi",
+      "subtitle": "Düşük maliyetli bakım, gelir düzeyine göre esnek ödeme, ücretsiz aşılar ve tercüman hizmeti sunan klinikleri bulun.",
+      "searchPlaceholder": "Klinik adı, cadde veya mahalle ara...",
+      "filterServices": "Hizmete Göre Filtrele",
+      "allServices": "Tüm Hizmetler",
+      "slidingScale": "Gelire Göre Esnek Ödeme",
+      "freeVaccines": "Ücretsiz Aşılar",
+      "mentalHealth": "Ruh Sağlığı ve Psikolojik Danışmanlık",
+      "dental": "Diş Sağlığı",
+      "languages": "Konuşulan Diller",
+      "allLanguages": "Tüm Diller",
+      "hours": "Çalışma Saatleri",
+      "phone": "Kliniği Ara",
+      "getDirections": "Yol Tarifi Al (Harita)",
+      "wheelchairAccess": "Tekerlekli Sandalye Erişilebilir",
+      "acceptsUninsured": "Sigortasız Hastaları Kabul Eder"
+    },
+    "quiz": {
+      "preTitle": "Okuma Öncesi Bilgi Değerlendirmesi",
+      "postTitle": "Öğrenme Değerlendirmesi",
+      "question": "Soru",
+      "of": "/",
+      "next": "Sonraki Soru",
+      "finish": "Anonim Sonuçları Gör",
+      "scoreLabel": "Puanınız",
+      "explanation": "Bu neden önemlidir:",
+      "anonymousNotice": "Bu değerlendirme tamamen anonimdir. İsim, e-posta veya kişisel veri kaydedilmez.",
+      "retake": "Testi Tekrarla",
+      "backToTopic": "Konu Rehberine Dön"
+    },
+    "ai": {
+      "heading": "Yapay Zekadan Daha Basit Açıklamasını İsteyin",
+      "promptPlaceholder": "Örn: 'Sağlıklı tabak yöntemini çocuklarıma nasıl anlatırım?' veya 'Eczacıma ne sormalıyım?'",
+      "submit": "Metni Sadeleştir",
+      "loading": "Doğrulanmış resmi kaynaklar taranıyor...",
+      "disclaimer": "Yalnızca eğitim amaçlıdır; tıbbi tavsiye değildir.",
+      "citationsLabel": "Dayanılan resmi kaynaklar:",
+      "guardrailWarning": "Güvenliğiniz için bu eğitim aracı hastalık teşhisi koyamaz, belirtileri değerlendiremez veya ilaç dozu öneremez. Lütfen bir sağlık kuruluşuna başvurun."
+    },
+    "ethics": {
+      "title": "Etik, Standartlar ve Resmi Kaynaklar",
+      "subtitle": "Şeffaflık toplum sağlığının temelidir. Güvenliğinizi ve haklarınızı nasıl koruduğumuzu öğrenin.",
+      "whyNoDiagnosisTitle": "Yapay Zeka ile Teşhis ve Triyajı Neden Kesinlikle Hariç Tutuyoruz?",
+      "whyNoDiagnosisText": "Yetersiz hizmet alan topluluklar sağlıkta eşitsizlikler ve algoritmik önyargılarla sıkça karşılaşmıştır. Tıbbi yapay zeka sistemleri bilgi uydurabilir veya kültürel belirti ifadelerini yanlış yorumlayabilir. Yapay zekamızı yalnızca DSÖ ve Sağlık Bakanlığı onaylı metinleri özetlemekle sınırlayarak toplumumuzu koruyor ve gerçek hekim bağını güçlendiriyoruz.",
+      "workflowTitle": "4 Aşamalı Klinik İnceleme Süreci"
+    },
+    "admin": {
+      "title": "Toplumsal Etki ve Analiz Paneli",
+      "subtitle": "Ulaşılan kişi sayısını ve öğrenme etkisini ölçen tamamen anonim telemetri verileri.",
+      "usersServed": "Ulaşılan Kişi Sayısı",
+      "topicsViewed": "Okunan Rehber Sayısı",
+      "avgImprovement": "Testlerdeki Bilgi Artışı",
+      "guidesPrinted": "Basılan Toplum Broşürü"
+    }
+  }
+}

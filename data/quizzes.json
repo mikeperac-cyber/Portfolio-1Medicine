@@ -1,0 +1,178 @@
+{
+  "diabetes-prevention": {
+    "en": {
+      "pre": {
+        "title": "Pre-Quiz: Diabetes Knowledge Check",
+        "description": "Test your baseline knowledge before exploring the guide. 100% anonymous.",
+        "questions": [
+          {
+            "id": "q1",
+            "question": "Can prediabetes be reversed before it turns into full Type 2 diabetes?",
+            "options": [
+              "No, once blood sugar is high it can never come down.",
+              "Yes, with healthy food choices, brisk walking, and weight management.",
+              "Only if you undergo major surgical operations."
+            ],
+            "correctIndex": 1,
+            "explanation": "Clinical studies by the CDC and WHO show that 30 minutes of brisk daily activity and balanced eating can reverse prediabetes."
+          },
+          {
+            "id": "q2",
+            "question": "According to the Healthy Plate Method, what should fill HALF of your dinner plate?",
+            "options": [
+              "Meat and processed cheese",
+              "White rice or pasta",
+              "Colorful non-starchy vegetables (like broccoli, greens, or carrots)"
+            ],
+            "correctIndex": 2,
+            "explanation": "Filling half your plate with non-starchy vegetables provides essential fiber that prevents rapid blood sugar spikes."
+          }
+        ]
+      },
+      "post": {
+        "title": "Post-Quiz: Diabetes Knowledge Check",
+        "description": "See what you learned after reading the guide! Anonymous results help clinics evaluate impact.",
+        "questions": [
+          {
+            "id": "q1",
+            "question": "Can prediabetes be reversed before it turns into full Type 2 diabetes?",
+            "options": [
+              "No, once blood sugar is high it can never come down.",
+              "Yes, with healthy food choices, brisk walking, and weight management.",
+              "Only if you undergo major surgical operations."
+            ],
+            "correctIndex": 1,
+            "explanation": "Clinical studies by the CDC and WHO show that 30 minutes of brisk daily activity and balanced eating can reverse prediabetes."
+          },
+          {
+            "id": "q2",
+            "question": "According to the Healthy Plate Method, what should fill HALF of your dinner plate?",
+            "options": [
+              "Meat and processed cheese",
+              "White rice or pasta",
+              "Colorful non-starchy vegetables (like broccoli, greens, or carrots)"
+            ],
+            "correctIndex": 2,
+            "explanation": "Filling half your plate with non-starchy vegetables provides essential fiber that prevents rapid blood sugar spikes."
+          }
+        ]
+      }
+    },
+    "es": {
+      "pre": {
+        "title": "Evaluación Inicial: ¿Qué sabemos sobre la diabetes?",
+        "description": "Ponga a prueba sus conocimientos iniciales. Todas las respuestas son anónimas.",
+        "questions": [
+          {
+            "id": "q1es",
+            "question": "¿Se puede revertir la prediabetes antes de que se convierta en diabetes tipo 2?",
+            "options": [
+              "No, una vez que sube el azúcar nunca más puede bajar.",
+              "Sí, con alimentación saludable, caminatas y hábitos activos.",
+              "Solo mediante una cirugía complicada."
+            ],
+            "correctIndex": 1,
+            "explanation": "¡Correcto! Estudios clínicos demuestran que cambios sencillos en la alimentación y caminar 30 minutos al día pueden revertir la prediabetes."
+          },
+          {
+            "id": "q2es",
+            "question": "Según el Método del Plato Saludable, ¿qué debe llenar la MITAD de su plato?",
+            "options": [
+              "Carne roja y queso",
+              "Arroz blanco o pastas",
+              "Verduras coloridas (como espinacas, nopales o zanahorias)"
+            ],
+            "correctIndex": 2,
+            "explanation": "¡Correcto! Llenar la mitad del plato con verduras aporta fibra que evita los picos repentinos de azúcar en la sangre."
+          }
+        ]
+      },
+      "post": {
+        "title": "Evaluación Final: ¿Qué aprendimos sobre la diabetes?",
+        "description": "Compruebe lo aprendido después de leer la guía.",
+        "questions": [
+          {
+            "id": "q1es",
+            "question": "¿Se puede revertir la prediabetes antes de que se convierta en diabetes tipo 2?",
+            "options": [
+              "No, una vez que sube el azúcar nunca más puede bajar.",
+              "Sí, con alimentación saludable, caminatas y hábitos activos.",
+              "Solo mediante una cirugía complicada."
+            ],
+            "correctIndex": 1,
+            "explanation": "¡Correcto! Estudios clínicos demuestran que cambios sencillos en la alimentación y caminar 30 minutos al día pueden revertir la prediabetes."
+          },
+          {
+            "id": "q2es",
+            "question": "Según el Método del Plato Saludable, ¿qué debe llenar la MITAD de su plato?",
+            "options": [
+              "Carne roja y queso",
+              "Arroz blanco o pastas",
+              "Verduras coloridas (como espinacas, nopales o zanahorias)"
+            ],
+            "correctIndex": 2,
+            "explanation": "¡Correcto! Llenar la mitad del plato con verduras aporta fibra que evita los picos repentinos de azúcar en la sangre."
+          }
+        ]
+      }
+    },
+    "tr": {
+      "pre": {
+        "title": "Ön Değerlendirme: Diyabet Bilgi Kontrolü",
+        "description": "Rehberi okumadan önceki bilgilerinizi test edin. Tüm yanıtlar tamamen anonimdir.",
+        "questions": [
+          {
+            "id": "q1tr",
+            "question": "Prediyabet (gizli şeker), Tip 2 diyabete dönüşmeden önce geri döndürülebilir mi?",
+            "options": [
+              "Hayır, kan şekeri bir kez yükseldi mi bir daha düşmez.",
+              "Evet, sağlıklı beslenme, tempolu yürüyüş ve kilo yönetimi ile geri döndürülebilir.",
+              "Yalnızca ağır bir ameliyatla geri döner."
+            ],
+            "correctIndex": 1,
+            "explanation": "Doğru! DSÖ ve Sağlık Bakanlığı klinik çalışmaları günde 30 dakika yürüyüş ve dengeli beslenme ile gizli şekerin geri döndürülebileceğini kanıtlamıştır."
+          },
+          {
+            "id": "q2tr",
+            "question": "Sağlıklı Tabak Yöntemine göre öğünlerinizde tabağınızın YARISINI ne doldurmalıdır?",
+            "options": [
+              "Kırmızı et ve yağlı peynir",
+              "Beyaz pirinç pilavı veya makarna",
+              "Renkli sebzeler ve yeşillikler (ıspanak, havuç, brokoli vb.)"
+            ],
+            "correctIndex": 2,
+            "explanation": "Doğru! Tabağın yarısını nişastasız sebzelerle doldurmak, kan şekerinin ani yükselmesini engelleyen hayati lifleri sağlar."
+          }
+        ]
+      },
+      "post": {
+        "title": "Son Değerlendirme: Neler Öğrendik?",
+        "description": "Rehberi okuduktan sonra öğrendiklerinizi değerlendirin.",
+        "questions": [
+          {
+            "id": "q1tr",
+            "question": "Prediyabet (gizli şeker), Tip 2 diyabete dönüşmeden önce geri döndürülebilir mi?",
+            "options": [
+              "Hayır, kan şekeri bir kez yükseldi mi bir daha düşmez.",
+              "Evet, sağlıklı beslenme, tempolu yürüyüş ve kilo yönetimi ile geri döndürülebilir.",
+              "Yalnızca ağır bir ameliyatla geri döner."
+            ],
+            "correctIndex": 1,
+            "explanation": "Doğru! DSÖ ve Sağlık Bakanlığı klinik çalışmaları günde 30 dakika yürüyüş ve dengeli beslenme ile gizli şekerin geri döndürülebileceğini kanıtlamıştır."
+          },
+          {
+            "id": "q2tr",
+            "question": "Sağlıklı Tabak Yöntemine göre öğünlerinizde tabağınızın YARISINI ne doldurmalıdır?",
+            "options": [
+              "Kırmızı et ve yağlı peynir",
+              "Beyaz pirinç pilavı veya makarna",
+              "Renkli sebzeler ve yeşillikler (ıspanak, havuç, brokoli vb.)"
+            ],
+            "correctIndex": 2,
+            "explanation": "Doğru! Tabağın yarısını nişastasız sebzelerle doldurmak, kan şekerinin ani yükselmesini engelleyen hayati lifleri sağlar."
+          }
+        ]
+      }
+    }
+  }
+}
