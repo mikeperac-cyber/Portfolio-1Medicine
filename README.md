@@ -65,46 +65,21 @@ java HealthWebService
 ```
 Open **http://localhost:3000** in your browser.
 
+### Option 3: Static Hosting / Zero Backend (GitHub Pages / Direct Browser)
+Simply open `index.html` directly in any modern browser, or host the repository on **GitHub Pages**, Cloudflare Pages, or Netlify with zero server configuration required!
+
 ### Run Automated Tests
 ```bash
 npm test
 ```
 
-```bash
-cp .env.example .env.local
-```
-*(The app works out of the box with the built-in mock data layer even without external Supabase/AI credentials!)*
-
-### 3. Run Development Server
-```bash
-npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### 4. Run Automated Tests
-```bash
-npm test
-```
-
-### 5. Build for Production
-```bash
-npm run build
-npm start
-```
-
 ---
 
-## 🗄️ Database Setup (Supabase)
+## 🔒 Safety & Privacy Principles
 
-1. Open your Supabase project dashboard.
-2. In the **SQL Editor**, run `supabase/migrations/20240101000000_init_schema.sql` to create all tables, indexes, and RLS policies.
-3. Run `supabase/seed.sql` to populate initial health explainers, bilingual clinics, and quiz questions.
-
----
-
-## 🔒 Safety & Ethics
-
-This project adheres to strict public health safety guidelines:
+1. **Dual-Phase Guardrails**: All user prompts are checked in the browser before transmission and on the server. Diagnosis, symptom triage, medication adjustments, and PII are strictly rejected.
+2. **Zero Login / Zero Tracking**: No accounts, passwords, or personal data are collected or required.
+3. **Vetted Clinical Content**: All medical content is drawn from the WHO, CDC, and Health Ministries and signed by clinical reviewers.
 - **No Diagnostic AI**: Diagnostic and triage AI are excluded to protect patients from hallucinations and algorithmic disparities.
 - **No PII**: Zero patient identifiers or tracking cookies are collected.
 - **Full Transparency**: See the in-app **Ethics & Sources** page for our 4-stage review workflow.

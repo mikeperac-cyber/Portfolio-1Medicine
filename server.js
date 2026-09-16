@@ -2,11 +2,11 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const url = require('url');
-const { validateHealthPrompt, formatSafeResponse, SAFE_FALLBACK_RESPONSE, MANDATORY_DISCLAIMER } = require('./public/js/guardrails');
+const { validateHealthPrompt, formatSafeResponse, SAFE_FALLBACK_RESPONSE, MANDATORY_DISCLAIMER } = require('./js/guardrails');
 
 const PORT = process.env.PORT || 3000;
 const DATA_DIR = path.join(__dirname, 'data');
-const PUBLIC_DIR = path.join(__dirname, 'public');
+const WEB_ROOT = __dirname;
 
 // Helper to load JSON files safely
 function loadJson(filename) {
@@ -297,11 +297,11 @@ const server = http.createServer(async (req, res) => {
     safePath = '/index.html';
   }
 
-  let filePath = path.join(PUBLIC_DIR, safePath);
+  let filePath = path.join(WEB_ROOT, safePath);
 
   // If path doesn't exist, fallback to index.html for SPA client-side routing
   if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
-    filePath = path.join(PUBLIC_DIR, 'index.html');
+    filePath = path.join(WEB_ROOT, 'index.html');
   }
 
   const ext = path.extname(filePath).toLowerCase();

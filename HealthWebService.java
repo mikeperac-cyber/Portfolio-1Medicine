@@ -112,7 +112,7 @@ public class HealthWebService {
         }
     }
 
-    // Serves HTML, CSS, JS from public/ with SPA index.html fallback
+    // Serves HTML, CSS, JS from root with SPA index.html fallback
     static class StaticFileHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange exchange) throws IOException {
@@ -122,9 +122,11 @@ public class HealthWebService {
                 path = "/index.html";
             }
 
-            File file = new File("public" + path);
+            // Strip leading slash for relative file lookup
+            String relativePath = path.startsWith("/") ? path.substring(1) : path;
+            File file = new File(relativePath);
             if (!file.exists() || file.isDirectory()) {
-                file = new File("public/index.html");
+                file = new File("index.html");
             }
 
             if (!file.exists()) {
