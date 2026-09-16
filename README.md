@@ -1,63 +1,75 @@
 # Community Health Bridge / Salud Comunitaria / Toplum Sağlığı Köprüsü 🩺🌍
 
-An open-access, multilingual, plain-language health literacy web application designed for underserved communities. Built with **Next.js 14 (App Router)**, **Tailwind CSS**, **Supabase (Postgres, RLS)**, and **Recharts**.
+An open-access, multilingual, plain-language health literacy web service designed for underserved communities. Built as a **zero-login, zero-tracker web service** with **vanilla HTML5, CSS3, JavaScript, JSON REST endpoints**, and a portable **Java HTTP server (`HealthWebService.java`)** alongside Node.js (`server.js`).
 
 ---
 
-## 🌟 Core Features
+## 🌟 Core Architecture & Principles
 
+- **Zero Login Required (100% Public Health Equity)**:
+  - No passwords, no sign-ups, no accounts, and no personal data collection.
+  - Ephemeral session tokens stored strictly in browser memory (`sessionStorage`).
 - **Plain-Language Health Explainers (Grade 5-6 Reading Level)**:
   - Diabetes Prevention & Everyday Management
   - Vaccination Basics & Immune Defense
   - Prescription Medication Safety & 7-Day Pill Organizers
   - Mental Health Support & Breaking Stigma
   - Preparing for Doctor Appointments & Asking for Interpreters
-- **Multilingual Support**:
+- **Multilingual Support (EN, ES, TR)**:
   - English (`en`) 🇺🇸
   - Spanish (`es`) 🇪🇸
   - Turkish (`tr`) 🇹🇷
+- **Text-to-Speech Audio Reader**:
+  - Built-in Web Speech API audio narration for auditory learners and individuals with low vision or reading barriers.
 - **Clinical Reviewer Badging**:
-  - Explicit sign-off badges displaying reviewing clinician name, medical role, and verification date (`draft` → `partner_review` → `published`).
-- **Grounded AI Health Assistant with Strict Guardrails**:
-  - Answers strictly using vetted text from the **WHO**, **CDC**, and **Ministries of Health**.
-  - Dual-phase safety filters intercept diagnosis requests (*"Do I have X?"*, *"Diyabet miyim?"*, *"¿Tengo diabetes?"*), triage attempts, and PII.
+  - Explicit sign-off badges displaying reviewing clinician name, medical role, and verification date.
+- **Grounded AI Health Assistant with Dual-Phase Guardrails**:
+  - Explains vetted text from the **WHO**, **CDC**, and **Ministries of Health**.
+  - Intercepts diagnosis requests (*"Do I have X?"*, *"Diyabet miyim?"*, *"¿Tengo diabetes?"*), triage attempts, and PII.
   - Enforces mandatory educational disclaimer: *"Educational only; not medical advice."*
 - **Community Clinic & Resource Directory**:
-  - Searchable and filterable by service (*Sliding-scale, Free Vaccines, Mental Health, Dental, Prenatal, Interpreters*) and language (*Spanish, Turkish, Cantonese, Vietnamese, Mayan, Arabic, Tagalog*).
-  - One-tap phone dialing (`tel:`) and Google Maps directions.
+  - Filterable by service and language with one-tap phone dialing (`tel:`) and directions.
 - **Anonymous Pre- and Post-Reading Quizzes**:
-  - Ephemeral session tracking with **zero PII collected** (no names, emails, or IPs).
-  - Immediate educational rationale and real-time knowledge retention delta calculation.
-- **Admin Impact & Analytics Dashboard**:
-  - Built with **Recharts**.
-  - Displays anonymous reach (users served, explainers read, handouts printed, pre vs. post score improvements).
+  - Ephemeral pre/post knowledge checks with instant educational rationale and score gain tracking.
+- **Admin Impact & Reach Dashboard**:
+  - Real-time anonymous telemetry measuring community members served, guide views, and knowledge improvement.
 - **Printable Outreach Handouts & Scalable QR Guides**:
-  - `@media print` optimized 1-page handouts for community health workers and clinic bulletin boards with dynamic vector QR codes.
-- **PWA & Offline Capability**:
-  - Web App Manifest and Service Worker caching core pages and locale dictionaries for spotty clinic basement connections.
+  - `@media print` 1-page outreach handouts for clinic bulletin boards with vector SVG QR codes.
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Dual-Backend Implementation
 
-- **Frontend**: Next.js 14 (App Router), React 18, TypeScript, Tailwind CSS, Lucide React
-- **Data Visualizations**: Recharts
-- **Database & Auth**: Supabase (PostgreSQL with Row Level Security) + seamless offline mock layer
-- **Testing**: Vitest unit test suite
+| Component | Technology | Description |
+|---|---|---|
+| **Web Client** | Vanilla HTML5 + CSS3 + JS | Lightweight, zero-bundler, responsive down to 360px, accessible |
+| **Node.js Service** | `server.js` (Native Node HTTP) | Serves REST endpoints (`/api/...`) and static SPA assets on port 3000 |
+| **Java Service** | `HealthWebService.java` | Portable single-file HTTP server (`com.sun.net.httpserver`) with zero dependencies |
+| **REST API** | JSON Endpoints | `/api/topics`, `/api/clinics`, `/api/quizzes`, `/api/metrics`, `/api/translations`, `/api/ai/summarize` |
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Running the Web Service
 
-### 1. Clone & Install Dependencies
+### Option 1: Run with Node.js (Recommended)
 ```bash
-git clone https://github.com/mikeperac-cyber/Portfolio-1Medicine.git
-cd Portfolio-1Medicine
-npm install
+npm start
+# or: node server.js
+```
+Open **http://localhost:3000** in your browser.
+
+### Option 2: Run with Java (Zero Dependencies)
+```bash
+javac HealthWebService.java
+java HealthWebService
+```
+Open **http://localhost:3000** in your browser.
+
+### Run Automated Tests
+```bash
+npm test
 ```
 
-### 2. Environment Variables
-Copy `.env.example` to `.env.local`:
 ```bash
 cp .env.example .env.local
 ```
