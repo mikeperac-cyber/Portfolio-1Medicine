@@ -1,330 +1,176 @@
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
-const url = require('url');
-const { validateHealthPrompt, formatSafeResponse, SAFE_FALLBACK_RESPONSE, MANDATORY_DISCLAIMER } = require('./js/guardrails');
+const http = require('node:http');
+const fs = require('node:fs');
+const path = require('node:path');
+const { randomUUID } = require('node:crypto');
+const { createStore } = require('./lib/store');
+const { security, compress, middleware, send, error, parseBody, checkOrigin, textField } = require('./lib/http');
+const { validateHealthPrompt, formatSafeResponse } = require('./js/guardrails');
+const summarize = require('./lib/summarize');
+const load = (name) => JSON.parse(fs.readFileSync(path.join(__dirname, 'data', name + '.json'), 'utf8'));
+const topics = load('topics');
+const clinics = load('clinics');
+const quizzes = load('quizzes');
+const translations = load('translations');
+const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8',
+  '.js': 'application/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8',
+  '.svg': 'image/svg+xml', '.png': 'image/png' };
 
-const PORT = process.env.PORT || 3000;
-const DATA_DIR = path.join(__dirname, 'data');
-const WEB_ROOT = __dirname;
-
-// Helper to load JSON files safely
-function loadJson(filename) {
-  try {
-    const filePath = path.join(DATA_DIR, filename);
-    const content = fs.readFileSync(filePath, 'utf8');
-    return JSON.parse(content);
-  } catch (err) {
-    console.error(`Failed to load ${filename}:`, err.message);
-    return null;
-  }
-}
-
-// In-memory data store initialized from JSON files
-let topicsData = loadJson('topics.json') || [];
-let clinicsData = loadJson('clinics.json') || [];
-let quizzesData = loadJson('quizzes.json') || {};
-let metricsData = loadJson('metrics.json') || {
-  totalUsersServed: 2480,
-  topicsViewedTotal: 7390,
-  avgQuizImprovement: '+38.4%',
-  totalGuidesPrinted: 612,
-  quizDeltas: [],
-  topicViews: [],
-  anonymousFeedback: []
-};
-let translationsData = loadJson('translations.json') || {};
-
-// MIME Types for Static Files
-const MIME_TYPES = {
-  '.html': 'text/html; charset=utf-8',
-  '.css': 'text/css; charset=utf-8',
-  '.js': 'application/javascript; charset=utf-8',
-  '.json': 'application/json; charset=utf-8',
-  '.svg': 'image/svg+xml',
-  '.png': 'image/png',
-  '.jpg': 'image/jpeg',
-  '.ico': 'image/x-icon',
-};
-
-// Request Body Parser
-function parseBody(req) {
-  return new Promise((resolve) => {
-    let body = '';
-    req.on('data', (chunk) => {
-      body += chunk.toString();
-    });
-    req.on('end', () => {
-      try {
-        resolve(body ? JSON.parse(body) : {});
-      } catch {
-        resolve({});
+function createHandler(options = {}) {
+  const store = options.store || createStore();
+  const webRoot = options.webRoot || (fs.existsSync(path.join(__dirname, 'dist/index.html')) ? path.join(__dirname, 'dist') : __dirname);
+  const log = options.log || ((entry) => console.log(JSON.stringify(entry)));
+  let inFlight = 0;
+  async function handle(req, res) {
+    const started = performance.now();
+    let route = 'invalid';
+    let acquired = false;
+    try {
+      await middleware(security, req, res);
+      await middleware(compress, req, res);
+      res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+      const url = new URL(req.url, 'http://localhost');
+      const pathname = decodeURIComponent(url.pathname);
+      if (pathname.startsWith('/api/')) {
+        route = pathname.replace(/\/topics\/.+/, '/topics/:slug').replace(/\/quizzes\/.+/, '/quizzes/:slug');
+        const known = ['/api/topics', '/api/topics/:slug', '/api/clinics', '/api/translations',
+          '/api/quizzes/:slug', '/api/metrics', '/api/quiz/submit', '/api/feedback', '/api/ai/summarize', '/api/telemetry', '/api/health'];
+        if (!known.includes(route)) { route = 'unknown'; throw error(404, 'API route not found'); }
+        res.once('finish', () => log({ event: 'api_request', route, method: req.method,
+          status: res.statusCode, durationMs: Math.round((performance.now() - started) * 100) / 100 }));
+        if (pathname === '/api/health' && ['GET', 'HEAD'].includes(req.method)) {
+          await store.initialize();
+          return send(req, res, 200, { status: 'ok' });
+        }
+        const write = ['/api/quiz/submit', '/api/feedback', '/api/ai/summarize', '/api/telemetry'].includes(pathname);
+        if (write ? req.method !== 'POST' : !['GET', 'HEAD'].includes(req.method)) {
+          res.setHeader('Allow', write ? 'POST' : 'GET, HEAD');
+          throw error(405, 'Method not allowed');
+        }
+        if (write) checkOrigin(req);
+        if (inFlight >= 64) throw error(503, 'Server is busy; please retry');
+        inFlight++; acquired = true;
+        // Trust only the header overwritten by Vercel, never arbitrary forwarded headers.
+        const ip = process.env.VERCEL ? (req.headers['x-vercel-forwarded-for'] || req.socket.remoteAddress) : req.socket.remoteAddress;
+        if (!await store.allow(ip, write ? 'write' : 'read', options.rateLimit || (write ? 30 : 300))) {
+          res.setHeader('Retry-After', Math.ceil((60000 - Date.now() % 60000) / 1000));
+          throw error(429, 'Too many requests; please retry shortly');
+        }
+        let locale = url.searchParams.get('locale') || 'en';
+        if (!['en', 'es', 'tr'].includes(locale)) locale = 'en';
+        const reply = (data) => send(req, res, 200, data, MIME['.json'], 'public, max-age=0, must-revalidate');
+        if (pathname === '/api/translations') return reply(translations[locale]);
+        if (pathname === '/api/topics') {
+          if (req.method === 'GET') await store.mutate((metrics) => { metrics.topicsViewedTotal++; });
+          return reply(topics.map((topic) => {
+            const { id, slug, category, icon, readingLevel, readMinutes } = topic;
+            const { content: _content, ...localized } = topic.translations[locale] || topic.translations.en;
+            return { id, slug, category, icon, readingLevel, readMinutes, ...localized };
+          }));
+        }
+        if (pathname.startsWith('/api/topics/')) {
+          const topic = topics.find((entry) => entry.slug === pathname.slice('/api/topics/'.length));
+          if (!topic) throw error(404, 'Topic not found');
+          const { translations: localized, ...base } = topic;
+          return reply({ ...base, ...(localized[locale] || localized.en) });
+        }
+        if (pathname === '/api/clinics') {
+          const query = (url.searchParams.get('query') || '').toLowerCase();
+          const service = url.searchParams.get('service');
+          const language = url.searchParams.get('language');
+          if (query.length > 200) throw error(400, 'Search query is too long');
+          return reply(clinics.filter((clinic) =>
+            (!query || [clinic.name, clinic.address, clinic.city, clinic.description].some((value) => value.toLowerCase().includes(query))) &&
+            (!service || service === 'all' || clinic.services.includes(service)) &&
+            (!language || language === 'all' || clinic.languages.some((value) => value.toLowerCase().includes(language.toLowerCase())))));
+        }
+        if (pathname.startsWith('/api/quizzes/')) {
+          const slug = pathname.slice('/api/quizzes/'.length);
+          if (!Object.hasOwn(quizzes, slug)) throw error(404, 'Quiz not found');
+          const group = quizzes[slug][locale] || quizzes[slug].en;
+          const type = url.searchParams.get('type') === 'post' ? 'post' : 'pre';
+          return reply(group[type]?.questions?.[0] || group[type]);
+        }
+        if (pathname === '/api/metrics') return send(req, res, 200, await store.read());
+        const body = await parseBody(req);
+        if (pathname === '/api/quiz/submit') {
+          const topic = textField(body, 'topic', 100, true);
+          if (!['pre', 'post'].includes(body.type) || typeof body.correct !== 'boolean' ||
+            (topic !== 'general' && !topics.some((entry) => entry.slug === topic))) throw error(400, 'Invalid quiz submission');
+          await store.mutate((metrics) => { metrics.totalUsersServed++; });
+          return send(req, res, 200, { success: true, message: 'Anonymous response recorded' });
+        }
+        if (pathname === '/api/feedback') {
+          const comment = textField(body, 'comment', 300, true);
+          const topic = textField(body, 'topic', 100) || 'General Health';
+          if (!Number.isInteger(body.rating) || body.rating < 1 || body.rating > 5) throw error(400, 'Rating must be 1 through 5');
+          if (validateHealthPrompt(comment + ' ' + topic).reason === 'pii_detected') throw error(400, 'Do not include personal identifying information');
+          await store.mutate((metrics) => {
+            metrics.anonymousFeedback.unshift({ id: randomUUID(), date: new Date().toISOString().slice(0, 10), topic, rating: body.rating, comment });
+            metrics.anonymousFeedback = metrics.anonymousFeedback.slice(0, 100);
+          });
+          return send(req, res, 200, { success: true });
+        }
+        if (pathname === '/api/telemetry') {
+          if (!['LCP', 'INP', 'CLS', 'JS_ERROR'].includes(body.name) || typeof body.value !== 'number' ||
+            !Number.isFinite(body.value) || body.value < 0 || body.value > (body.name === 'CLS' ? 100 : 600000)) throw error(400, 'Invalid performance measurement');
+          await store.mutate((metrics) => {
+            metrics.performance ||= {};
+            const entry = metrics.performance[body.name] ||= { count: 0, total: 0, max: 0 };
+            entry.count++; entry.total += body.value; entry.max = Math.max(entry.max, body.value);
+          });
+          return send(req, res, 202, { success: true });
+        }
+        if (pathname === '/api/ai/summarize') {
+          const userPrompt = textField(body, 'userPrompt', 2000);
+          textField(body, 'topicTitle', 200);
+          textField(body, 'articleContent', 20000);
+          if (body.locale !== undefined && !['en', 'es', 'tr'].includes(body.locale)) throw error(400, 'Invalid locale');
+          if (body.keyTakeaways !== undefined && (!Array.isArray(body.keyTakeaways) || body.keyTakeaways.length > 20 || body.keyTakeaways.some((value) => typeof value !== 'string' || value.length > 1000))) throw error(400, 'Invalid keyTakeaways');
+          // Citations come from the reviewed catalog, never caller-supplied HTML or URLs.
+          const topic = topics.find((entry) => Object.values(entry.translations).some((t) => t.title === body.topicTitle));
+          const vettedSources = topic ? (topic.translations[body.locale || locale] || topic.translations.en).vettedSources : [];
+          if (userPrompt) {
+            const result = validateHealthPrompt(userPrompt);
+            if (!result.isSafe) return send(req, res, 200, formatSafeResponse(result.fallback, vettedSources, true));
+          }
+          return send(req, res, 200, summarize({ ...body, vettedSources }));
+        }
       }
-    });
-  });
-}
-
-const server = http.createServer(async (req, res) => {
-  const parsedUrl = url.parse(req.url, true);
-  const pathname = parsedUrl.pathname;
-  const method = req.method;
-
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  if (method === 'OPTIONS') {
-    res.writeHead(204);
-    res.end();
-    return;
-  }
-
-  // --------------------------------------------------------------------------
-  // API ROUTE: Translations
-  // --------------------------------------------------------------------------
-  if (pathname === '/api/translations') {
-    const locale = parsedUrl.query.locale || 'en';
-    const dict = translationsData[locale] || translationsData.en;
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(dict));
-    return;
-  }
-
-  // --------------------------------------------------------------------------
-  // API ROUTE: Topics List & Single Topic
-  // --------------------------------------------------------------------------
-  if (pathname === '/api/topics') {
-    const locale = parsedUrl.query.locale || 'en';
-    const localizedTopics = topicsData.map((t) => {
-      const trans = t.translations[locale] || t.translations.en;
-      return {
-        id: t.id,
-        slug: t.slug,
-        category: t.category,
-        icon: t.icon,
-        readingLevel: t.readingLevel,
-        readMinutes: t.readMinutes,
-        title: trans.title,
-        summary: trans.summary,
-        keyTakeaways: trans.keyTakeaways,
-        reviewedBy: trans.reviewedBy,
-        reviewerRole: trans.reviewerRole,
-        reviewedAt: trans.reviewedAt,
-        vettedSources: trans.vettedSources,
-      };
-    });
-
-    metricsData.topicsViewedTotal += 1;
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(localizedTopics));
-    return;
-  }
-
-  if (pathname.startsWith('/api/topics/')) {
-    const slug = pathname.replace('/api/topics/', '');
-    const locale = parsedUrl.query.locale || 'en';
-    const topic = topicsData.find((t) => t.slug === slug);
-
-    if (!topic) {
-      res.writeHead(404, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Topic not found' }));
-      return;
-    }
-
-    const trans = topic.translations[locale] || topic.translations.en;
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(
-      JSON.stringify({
-        id: topic.id,
-        slug: topic.slug,
-        category: topic.category,
-        icon: topic.icon,
-        readingLevel: topic.readingLevel,
-        readMinutes: topic.readMinutes,
-        ...trans,
-      })
-    );
-    return;
-  }
-
-  // --------------------------------------------------------------------------
-  // API ROUTE: Clinics Directory
-  // --------------------------------------------------------------------------
-  if (pathname === '/api/clinics') {
-    const { query, service, language } = parsedUrl.query;
-    let list = clinicsData;
-
-    if (query) {
-      const q = query.toLowerCase();
-      list = list.filter(
-        (c) =>
-          c.name.toLowerCase().includes(q) ||
-          c.address.toLowerCase().includes(q) ||
-          c.city.toLowerCase().includes(q) ||
-          c.description.toLowerCase().includes(q)
-      );
-    }
-
-    if (service && service !== 'all') {
-      list = list.filter((c) => c.services.includes(service));
-    }
-
-    if (language && language !== 'all') {
-      list = list.filter((c) =>
-        c.languages.some((l) => l.toLowerCase().includes(language.toLowerCase()))
-      );
-    }
-
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(list));
-    return;
-  }
-
-  // --------------------------------------------------------------------------
-  // API ROUTE: Quizzes
-  // --------------------------------------------------------------------------
-  if (pathname.startsWith('/api/quizzes/')) {
-    const slug = pathname.replace('/api/quizzes/', '');
-    const locale = parsedUrl.query.locale || 'en';
-    const type = parsedUrl.query.type || 'pre';
-
-    const topicQuizzes = quizzesData[slug] || quizzesData['diabetes-prevention'];
-    const localeQuiz = (topicQuizzes && topicQuizzes[locale]) || topicQuizzes.en;
-    const quizGroup = localeQuiz[type] || localeQuiz.pre;
-    const questionObj = (quizGroup && quizGroup.questions && quizGroup.questions[0]) || quizGroup;
-
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(questionObj));
-    return;
-  }
-
-  // --------------------------------------------------------------------------
-  // API ROUTE: Anonymous Quiz Submission
-  // --------------------------------------------------------------------------
-  if (pathname === '/api/quiz/submit' && method === 'POST') {
-    const body = await parseBody(req);
-    metricsData.totalUsersServed += 1;
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ success: true, message: 'Anonymous response recorded' }));
-    return;
-  }
-
-  // --------------------------------------------------------------------------
-  // API ROUTE: AI Plain-Language Summarization (with Guardrails)
-  // --------------------------------------------------------------------------
-  if (pathname === '/api/ai/summarize' && method === 'POST') {
-    const body = await parseBody(req);
-    const { topicTitle, articleContent, keyTakeaways, vettedSources, userPrompt, locale } = body;
-
-    // 1. Guardrail Validation
-    if (userPrompt && userPrompt.trim()) {
-      const guardrailResult = validateHealthPrompt(userPrompt);
-      if (!guardrailResult.isSafe) {
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(
-          JSON.stringify(
-            formatSafeResponse(
-              guardrailResult.fallback || SAFE_FALLBACK_RESPONSE,
-              vettedSources || [],
-              true
-            )
-          )
-        );
-        return;
+      if (!['GET', 'HEAD'].includes(req.method)) { res.setHeader('Allow', 'GET, HEAD'); throw error(405, 'Method not allowed'); }
+      if (pathname.includes('\\') || pathname.includes('\0') || pathname.split('/').some((part) => part === '..' || part.startsWith('.'))) throw error(404, 'Not found');
+      let publicPath = pathname === '/' ? '/index.html' : pathname;
+      const publicFile = /^(?:\/(?:index\.html|offline\.html|manifest\.json|icon\.svg|icon-(?:192|512)\.png|sw\.js)|\/assets\/[a-zA-Z0-9.-]+\.(?:css|js|svg)|\/css\/style\.css|\/js\/(?:app|guardrails|platform|web-vitals)\.js|\/data\/(?:topics|clinics|quizzes|translations|metrics)\.json)$/;
+      if (!publicFile.test(publicPath)) {
+        if (/^\/(?:en|es|tr|topics|clinics|ethics|admin)(?:\/[a-z0-9-]+)?\/?$/.test(publicPath)) publicPath = '/index.html';
+        else throw error(404, 'Not found');
       }
-    }
-
-    // 2. Deterministic Safe Plain-Language Summary Generator
-    let summaryText = '';
-    const points = keyTakeaways || [];
-
-    if (locale === 'tr') {
-      summaryText = `Doğrulanmış Eğitim Özeti (${topicTitle || 'Sağlık Rehberi'}):\n\n` +
-        `• ${points[0] || 'Küçük günlük alışkanlıklar sağlığınızı uzun vadede korur.'}\n` +
-        `• ${points[1] || 'Hekiminizin tavsiyelerine uyun ve kontrollerinizi aksatmayın.'}\n` +
-        `• ${points[2] || 'Toplum sağlığı merkezleri ücretsiz aşı ve uygun maliyetli bakım sunar.'}\n\n` +
-        `Bireysel tıbbi değerlendirme için lütfen doğrudan sağlık kuruluşunuza danışınız.`;
-    } else if (locale === 'es') {
-      summaryText = `Resumen Educativo Verificado (${topicTitle || 'Guía de Salud'}):\n\n` +
-        `• ${points[0] || 'Los pequeños hábitos diarios protegen su bienestar a largo plazo.'}\n` +
-        `• ${points[1] || 'Siga las recomendaciones médicas y acuda a chequeos preventivos.'}\n` +
-        `• ${points[2] || 'Las clínicas comunitarias ofrecen vacunas gratis y atención a bajo costo.'}\n\n` +
-        `Consulte directamente con un profesional médico en su clínica local.`;
-    } else {
-      summaryText = `Verified Educational Summary (${topicTitle || 'Health Literacy Guide'}):\n\n` +
-        `• ${points[0] || 'Prevention and small daily routines protect your long-term wellness.'}\n` +
-        `• ${points[1] || 'Follow clinical guidance and attend routine preventative screenings.'}\n` +
-        `• ${points[2] || 'Neighborhood community clinics offer low-cost visits, free vaccines, and interpreters.'}\n\n` +
-        `Speak directly with a healthcare professional at your local community clinic.`;
-    }
-
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(formatSafeResponse(summaryText, vettedSources || [], false)));
-    return;
+      let file = path.join(webRoot, publicPath);
+      if (webRoot === __dirname && publicPath === '/js/web-vitals.js') file = path.join(__dirname, 'node_modules/web-vitals/dist/web-vitals.iife.js');
+      let content;
+      try { content = await fs.promises.readFile(file); } catch { throw error(404, 'Not found'); }
+      const immutable = /^\/assets\/.+\.[a-f0-9]{12}\.(css|js|svg)$/.test(publicPath);
+      return send(req, res, 200, content, MIME[path.extname(file)], immutable ? 'public, max-age=31536000, immutable' : 'no-cache');
+    } catch (err) {
+      const status = err instanceof URIError ? 400 : err.status || 500;
+      if (status >= 500) log({ event: 'server_error', route, status });
+      if (!res.headersSent) send(req, res, status, { error: status >= 500 ? 'Service temporarily unavailable' : err.message });
+      else res.end();
+    } finally { if (acquired) inFlight--; }
   }
-
-  // --------------------------------------------------------------------------
-  // API ROUTE: Anonymous Metrics & Telemetry
-  // --------------------------------------------------------------------------
-  if (pathname === '/api/metrics') {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(metricsData));
-    return;
-  }
-
-  if (pathname === '/api/feedback' && method === 'POST') {
-    const body = await parseBody(req);
-    if (body.comment) {
-      metricsData.anonymousFeedback.unshift({
-        id: `fb-${Date.now()}`,
-        date: 'Just now',
-        topic: body.topic || 'General Health',
-        rating: body.rating || 5,
-        comment: body.comment.substring(0, 300),
-      });
-    }
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ success: true }));
-    return;
-  }
-
-  // --------------------------------------------------------------------------
-  // STATIC FILES & SPA FALLBACK
-  // --------------------------------------------------------------------------
-  let safePath = path.normalize(pathname).replace(/^(\.\.[\/\\])+/, '');
-  if (safePath === '/' || safePath === '\\') {
-    safePath = '/index.html';
-  }
-
-  let filePath = path.join(WEB_ROOT, safePath);
-
-  // If path doesn't exist, fallback to index.html for SPA client-side routing
-  if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
-    filePath = path.join(WEB_ROOT, 'index.html');
-  }
-
-  const ext = path.extname(filePath).toLowerCase();
-  const contentType = MIME_TYPES[ext] || 'application/octet-stream';
-
-  try {
-    const content = fs.readFileSync(filePath);
-    res.writeHead(200, { 'Content-Type': contentType });
-    res.end(content);
-  } catch (err) {
-    res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.end('Not Found');
-  }
-});
-
+  handle.store = store;
+  return handle;
+}
+function createServer(options) {
+  const handler = createHandler(options);
+  const server = http.createServer(handler);
+  server.requestTimeout = 15000;
+  server.headersTimeout = 10000;
+  server.on('close', () => handler.store.close());
+  return server;
+}
 if (require.main === module) {
-  server.listen(PORT, () => {
-    console.log(`=======================================================`);
-    console.log(`🏥 HealthBridge Web Service running on port ${PORT}`);
-    console.log(`🌐 Open in browser: http://localhost:${PORT}`);
-    console.log(`🔒 Zero Login Required • 100% Anonymous Public Health`);
-    console.log(`=======================================================`);
-  });
+  const server = createServer();
+  server.listen(Number(process.env.PORT || 3000), () => console.log(`HealthBridge listening on http://localhost:${server.address().port}`));
+  for (const signal of ['SIGTERM', 'SIGINT']) process.once(signal, () => server.close());
 }
-
-module.exports = server;
+module.exports = { createHandler, createServer };

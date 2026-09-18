@@ -1,0 +1,37 @@
+name: CI
+on: [push, pull_request]
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm audit --audit-level=high
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - run: javac HealthWebService.java
+      - run: node tests/java-smoke.js
+      - run: docker build -t healthbridge:ci .
+      - run: docker build -f Dockerfile.java -t healthbridge-java:ci .
+      - name: Smoke test Node container
+        run: |
+          docker run -d --name healthbridge -p 3000:3000 healthbridge:ci
+          trap 'docker logs healthbridge; docker stop healthbridge' EXIT
+          for i in $(seq 1 30); do
+            if curl --fail http://localhost:3000/api/health; then exit 0; fi
+            sleep 1
+          done
+          exit 1

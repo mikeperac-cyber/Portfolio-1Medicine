@@ -10,12 +10,13 @@
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
+  <p id="connectionStatus" class="offline-notice" role="status" hidden>Using downloaded resources. Live updates are unavailable. / Sin conexión / Çevrimdışı</p>
   <!-- Urgent Emergency & Crisis Banner (Always accessible) -->
   <aside class="emergency-bar" role="complementary" aria-label="Emergency and Crisis Notice">
     <div class="container emergency-content">
       <span class="emergency-badge">URGENT</span>
       <span id="emergencyText">Medical emergency? Call 911 (or 112) immediately. Mental health crisis? Call or text 988 for free 24/7 confidential support.</span>
-      <button class="emergency-dismiss" onclick="this.parentElement.parentElement.style.display='none'" aria-label="Dismiss banner">&times;</button>
+      <button class="emergency-dismiss" data-action="dismissEmergency" aria-label="Dismiss banner">&times;</button>
     </div>
   </aside>
 
@@ -48,7 +49,7 @@
         </div>
 
         <!-- Quick Print Button -->
-        <button id="quickPrintBtn" class="btn btn-secondary btn-sm" onclick="App.showPrintModal()" title="Print outreach flyer">
+        <button id="quickPrintBtn" class="btn btn-secondary btn-sm" data-action="showPrintModal" title="Print outreach flyer">
           🖨️ <span id="quickPrintText">Print Handout</span>
         </button>
       </div>
@@ -72,7 +73,7 @@
           <span id="quizBadge" class="badge">Pre-Reading Quiz</span>
           <span class="badge badge-secondary">100% Anonymous</span>
         </div>
-        <button class="modal-close" onclick="App.closeQuizModal()" aria-label="Close Quiz">&times;</button>
+        <button class="modal-close" data-action="closeQuizModal" aria-label="Close Quiz">&times;</button>
       </div>
       <div class="modal-body" id="quizModalContent">
         <!-- Injected dynamically -->
@@ -86,8 +87,8 @@
       <div class="modal-header no-print">
         <h2 id="printModalHeading">Community Outreach Handout</h2>
         <div class="modal-actions">
-          <button class="btn btn-primary btn-sm" onclick="window.print()">🖨️ Print Now</button>
-          <button class="modal-close" onclick="App.closePrintModal()" aria-label="Close Print Preview">&times;</button>
+          <button class="btn btn-primary btn-sm" data-action="print">🖨️ Print Now</button>
+          <button class="modal-close" data-action="closePrintModal" aria-label="Close Print Preview">&times;</button>
         </div>
       </div>
       <div class="modal-body" id="printFlyerArea">
@@ -101,7 +102,7 @@
     <div class="modal-card">
       <div class="modal-header">
         <h3 id="aiModalTitle">💡 Plain-Language AI Explainer</h3>
-        <button class="modal-close" onclick="App.closeAiModal()" aria-label="Close AI explainer">&times;</button>
+        <button class="modal-close" data-action="closeAiModal" aria-label="Close AI explainer">&times;</button>
       </div>
       <div class="modal-body">
         <div class="safety-badge-alert">
@@ -112,7 +113,7 @@
           </div>
         </div>
 
-        <form id="aiPromptForm" onsubmit="App.handleAiPromptSubmit(event)">
+        <form id="aiPromptForm">
           <label for="aiUserPrompt" class="form-label">Ask an educational question about this topic:</label>
           <div class="input-with-button">
             <input type="text" id="aiUserPrompt" class="form-input" placeholder="e.g. Can you explain the daily water tip in even simpler words?" required />
@@ -163,5 +164,7 @@
   <script src="/js/guardrails.js"></script>
   <!-- Client Application Logic -->
   <script src="/js/app.js"></script>
+  <script src="/js/web-vitals.js"></script>
+  <script src="/js/platform.js"></script>
 </body>
 </html>

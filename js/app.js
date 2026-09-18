@@ -8,7 +8,30 @@ const App = {
   synth: window.speechSynthesis || null,
   speakingUtterance: null,
 
+  escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
+  },
+
   async init() {
+    const actions = {
+      showPrintModal: () => this.showPrintModal(),
+      closePrintModal: () => this.closePrintModal(),
+      closeQuizModal: () => this.closeQuizModal(),
+      openAiModal: () => this.openAiModal(),
+      closeAiModal: () => this.closeAiModal(),
+      toggleSpeech: () => this.toggleSpeech(),
+      openQuizModal: (button) => this.openQuizModal(button.dataset.type),
+      handleQuizAnswer: (button) => this.handleQuizAnswer(Number(button.dataset.index), Number(button.dataset.correct), button.dataset.explanation),
+      print: () => window.print(),
+      dismissEmergency: (button) => { button.closest('aside').hidden = true; },
+    };
+    document.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-action]');
+      if (button && Object.hasOwn(actions, button.dataset.action)) actions[button.dataset.action](button);
+    });
+    document.getElementById('aiPromptForm')?.addEventListener('submit', (event) => this.handleAiPromptSubmit(event));
+    document.addEventListener('input', (event) => { if (event.target.id === 'clinicSearch') this.filterClinics(); });
+    document.addEventListener('change', (event) => { if (['serviceFilter', 'languageFilter'].includes(event.target.id)) this.filterClinics(); });
     const savedLocale = sessionStorage.getItem('healthbridge_locale');
     if (savedLocale && ['en', 'es', 'tr'].includes(savedLocale)) {
       this.locale = savedLocale;
@@ -52,6 +75,7 @@ const App = {
       if (res.ok) return await res.json();
     } catch (e) {
       // Backend not running; fallback to static data files
+      window.dispatchEvent(new Event('healthbridge:offline-data'));
     }
     if (staticFallbackPath) {
       try {
@@ -180,7 +204,7 @@ const App = {
         '<div class="hero-actions">' +
           '<a href="#/topics" class="btn btn-primary">' + (t.exploreTopics || 'Browse Health Topics') + '</a> ' +
           '<a href="#/clinics" class="btn btn-secondary">' + (t.findClinics || 'Find Free &amp; Low-Cost Clinics') + '</a> ' +
-          '<button class="btn btn-outline" onclick="App.showPrintModal()">🖨️ Outreach Flyer &amp; QR</button>' +
+          '<button class="btn btn-outline" data-action="showPrintModal">🖨️ Outreach Flyer &amp; QR</button>' +
         '</div>' +
       '</section>' +
 
@@ -337,19 +361,19 @@ const App = {
         '<h1 style="font-size: 2.2rem; margin-bottom: 0.75rem;">' + topic.icon + ' ' + topic.title + '</h1>' +
         '<p style="font-size: 1.15rem; color: var(--color-text-muted);">' + topic.summary + '</p>' +
         '<div class="topic-actions">' +
-          '<button id="ttsButton" class="btn btn-primary btn-sm" onclick="App.toggleSpeech()">' +
+          '<button id="ttsButton" class="btn btn-primary btn-sm" data-action="toggleSpeech">' +
             '🔊 <span id="ttsBtnText">' + (t.listenAloud || 'Listen to Summary') + '</span>' +
           '</button> ' +
-          '<button class="btn btn-secondary btn-sm" onclick="App.openAiModal()">' +
+          '<button class="btn btn-secondary btn-sm" data-action="openAiModal">' +
             '💡 ' + (t.aiSummaryButton || 'Ask AI to Simplify') + ' ' +
           '</button> ' +
-          '<button class="btn btn-secondary btn-sm" onclick="App.openQuizModal(\'pre\')">' +
+          '<button class="btn btn-secondary btn-sm" data-action="openQuizModal" data-type="pre">' +
             '📝 ' + (t.preQuizCta || 'Take Pre-Quiz') + ' ' +
           '</button> ' +
-          '<button class="btn btn-secondary btn-sm" onclick="App.openQuizModal(\'post\')">' +
+          '<button class="btn btn-secondary btn-sm" data-action="openQuizModal" data-type="post">' +
             '🎯 ' + (t.postQuizCta || 'Check What You Learned') + ' ' +
           '</button> ' +
-          '<button class="btn btn-outline btn-sm" onclick="App.showPrintModal(\'' + topic.slug + '\')">' +
+          '<button class="btn btn-outline btn-sm" data-action="showPrintModal">' +
             '🖨️ ' + (t.printHandout || 'Print Flyer &amp; QR') +
           '</button>' +
         '</div>' +
@@ -370,7 +394,7 @@ const App = {
         '<h4>' + (t.officialSources || 'Official Sources &amp; Citations') + '</h4>' +
         '<ul>' +
           topic.vettedSources.map((s) => 
-            '<li>&bull; <strong>' + s.organization + ':</strong> <a href="' + s.url + '" target="_blank" rel="noopener noreferrer">' + s.title + '</a></li>'
+            '<li>&bull; <strong>' + this.escapeHtml(s.organization) + ':</strong> <a href="' + s.url + '" target="_blank" rel="noopener noreferrer">' + this.escapeHtml(s.title || s.name) + '</a></li>'
           ).join('') +
         '</ul>' +
       '</div>';
@@ -427,11 +451,11 @@ const App = {
       '<div class="filter-bar">' +
         '<div class="filter-group">' +
           '<label for="clinicSearch" class="sr-only">Search</label>' +
-          '<input type="text" id="clinicSearch" placeholder="' + (t.searchPlaceholder || 'Search clinic or neighborhood...') + '" oninput="App.filterClinics()" />' +
+          '<input type="text" id="clinicSearch" placeholder="' + (t.searchPlaceholder || 'Search clinic or neighborhood...') + '" />' +
         '</div>' +
         '<div class="filter-group">' +
           '<label for="serviceFilter" class="sr-only">Service</label>' +
-          '<select id="serviceFilter" onchange="App.filterClinics()">' +
+          '<select id="serviceFilter">' +
             '<option value="all">' + (t.allServices || 'All Services') + '</option>' +
             '<option value="Sliding Scale / Low Cost">' + (t.slidingScale || 'Sliding Scale / Low Cost') + '</option>' +
             '<option value="Free Immunizations">' + (t.freeVaccines || 'Free Immunizations') + '</option>' +
@@ -441,7 +465,7 @@ const App = {
         '</div>' +
         '<div class="filter-group">' +
           '<label for="languageFilter" class="sr-only">Language</label>' +
-          '<select id="languageFilter" onchange="App.filterClinics()">' +
+          '<select id="languageFilter">' +
             '<option value="all">' + (t.allLanguages || 'All Languages') + '</option>' +
             '<option value="English">English</option>' +
             '<option value="Spanish">Español</option>' +
@@ -483,7 +507,7 @@ const App = {
         '</div>' +
         '<div class="card-footer">' +
           '<a href="tel:' + c.phone + '" class="btn btn-secondary btn-sm">📞 ' + c.phone + '</a> ' +
-          '<a href="' + c.mapLink + '" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">🗺️ Directions</a>' +
+          '<a href="' + c.mapUrl + '" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">🗺️ Directions</a>' +
         '</div>' +
       '</div>'
     ).join('');
@@ -593,20 +617,20 @@ const App = {
         '<div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">' +
           '<div>' +
             '<h1>Community Impact &amp; Reach Dashboard</h1>' +
-            '<p style="color: var(--color-text-muted);">Real-time anonymous telemetry measuring health literacy growth across underserved neighborhoods.</p>' +
+            '<p style="color: var(--color-text-muted);">Aggregate activity includes demonstration baseline data; these counts do not represent unique people. No prompts or identifiers are stored.</p>' +
           '</div>' +
-          '<span class="badge badge-success" style="font-size: 0.9rem; padding: 0.5rem 1rem;">Live Telemetry Active</span>' +
+          '<span class="badge badge-success" style="font-size: 0.9rem; padding: 0.5rem 1rem;">Aggregate Activity</span>' +
         '</div>' +
       '</div>' +
 
       '<div class="metrics-grid">' +
         '<div class="metric-card">' +
           '<div class="metric-value">' + (metrics.totalUsersServed || 2480).toLocaleString() + '</div>' +
-          '<div class="metric-label">Anonymous Community Members Served</div>' +
+          '<div class="metric-label">Quiz Submissions (includes demo baseline)</div>' +
         '</div>' +
         '<div class="metric-card">' +
           '<div class="metric-value">' + (metrics.topicsViewedTotal || 7390).toLocaleString() + '</div>' +
-          '<div class="metric-label">Health Topic Explanations Read</div>' +
+          '<div class="metric-label">Topic List Requests (includes demo baseline)</div>' +
         '</div>' +
         '<div class="metric-card">' +
           '<div class="metric-value" style="color: var(--color-success);">' + (metrics.avgQuizImprovement || '+38.4%') + '</div>' +
@@ -660,11 +684,11 @@ const App = {
           (metrics.anonymousFeedback || []).map((fb) => 
             '<div style="background: #f8fafc; border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 1rem;">' +
               '<div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem;">' +
-                '<strong>' + '★'.repeat(fb.rating) + '</strong>' +
-                '<span style="color: var(--color-text-muted);">' + fb.date + '</span>' +
+                '<strong>' + '★'.repeat(Math.max(0, Math.min(5, Number(fb.rating) || 0))) + '</strong>' +
+                '<span style="color: var(--color-text-muted);">' + this.escapeHtml(fb.date) + '</span>' +
               '</div>' +
-              '<p style="font-style: italic; font-size: 0.9rem; color: #334155; margin-bottom: 0.5rem;">"' + fb.comment + '"</p>' +
-              '<span class="badge badge-secondary">' + fb.topic + '</span>' +
+              '<p style="font-style: italic; font-size: 0.9rem; color: #334155; margin-bottom: 0.5rem;">"' + this.escapeHtml(fb.comment) + '"</p>' +
+              '<span class="badge badge-secondary">' + this.escapeHtml(fb.topic) + '</span>' +
             '</div>'
           ).join('') +
         '</div>' +
@@ -701,7 +725,7 @@ const App = {
           '<p class="quiz-question-text">' + quiz.question + '</p>' +
           '<div class="quiz-options">' +
             quiz.options.map((opt, idx) => 
-              '<button class="quiz-option" onclick="App.handleQuizAnswer(' + idx + ', ' + quiz.correctIndex + ', \'' + encodeURIComponent(quiz.explanation) + '\')">' +
+              '<button class="quiz-option" data-action="handleQuizAnswer" data-index="' + idx + '" data-correct="' + quiz.correctIndex + '" data-explanation="' + encodeURIComponent(quiz.explanation) + '">' +
                 String.fromCharCode(65 + idx) + '. ' + opt +
               '</button>'
             ).join('') +
@@ -736,7 +760,7 @@ const App = {
           '</strong>' +
           '<p style="margin-top: 0.5rem;">' + explanation + '</p>' +
           '<div style="margin-top: 1rem; display: flex; justify-content: flex-end; gap: 0.5rem;">' +
-            '<button class="btn btn-primary btn-sm" onclick="App.closeQuizModal()">Done</button>' +
+            '<button class="btn btn-primary btn-sm" data-action="closeQuizModal">Done</button>' +
           '</div>' +
         '</div>';
     }
@@ -757,7 +781,7 @@ const App = {
     if (modal) modal.style.display = 'none';
   },
 
-  showPrintModal(slug) {
+  showPrintModal() {
     const modal = document.getElementById('printModal');
     const flyerArea = document.getElementById('printFlyerArea');
 
@@ -916,7 +940,7 @@ const App = {
             sourcesList.innerHTML = 
               '<strong style="display:block; margin-top:0.75rem; font-size:0.8rem; color:#065f46;">Vetted Citations:</strong>' +
               '<ul style="padding-left:1.2rem; font-size:0.85rem; color:#047857;">' +
-                data.citations.map((c) => '<li>' + c.organization + ': ' + c.title + '</li>').join('') +
+                data.citations.map((c) => '<li>' + this.escapeHtml(c.organization) + ': ' + this.escapeHtml(c.title || c.name) + '</li>').join('') +
               '</ul>';
           }
           return;
@@ -924,6 +948,8 @@ const App = {
       }
     } catch (err) {
       // Backend not running; fallback to client-side plain-language generator
+    } finally {
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Ask AI'; }
     }
 
     // 2. Client-side deterministic safe summary fallback
@@ -932,7 +958,7 @@ const App = {
       'Consult your primary care clinician for tailored guidance.',
       'Community health centers provide free immunizations and interpreter support.',
     ];
-    let clientSummary = '';
+    let clientSummary;
     if (this.locale === 'tr') {
       clientSummary = 'Doğrulanmış Eğitim Özeti (' + (this.currentTopic?.title || 'Sağlık Rehberi') + '):\n\n' +
         '• ' + (points[0] || 'Günlük sağlıklı alışkanlıklar vücudunuzu korur.') + '\n' +
@@ -960,7 +986,7 @@ const App = {
         sourcesList.innerHTML = 
           '<strong style="display:block; margin-top:0.75rem; font-size:0.8rem; color:#065f46;">Vetted Citations:</strong>' +
           '<ul style="padding-left:1.2rem; font-size:0.85rem; color:#047857;">' +
-            this.currentTopic.vettedSources.map((c) => '<li>' + c.organization + ': ' + c.title + '</li>').join('') +
+            this.currentTopic.vettedSources.map((c) => '<li>' + this.escapeHtml(c.organization) + ': ' + this.escapeHtml(c.title || c.name) + '</li>').join('') +
           '</ul>';
       }
     }
@@ -974,4 +1000,3 @@ const App = {
 document.addEventListener('DOMContentLoaded', () => {
   App.init();
 });
-

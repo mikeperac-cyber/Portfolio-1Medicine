@@ -13,6 +13,12 @@
 
 # production
 /build
+/dist/
+/storage/
+/backups/
+*.class
+.env*
+!.env.example
 
 # misc
 .DS_Store
@@ -33,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Marketplace-installed local agent guidance
+/.agents/
+/skills-lock.json

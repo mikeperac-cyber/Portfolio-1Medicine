@@ -1,0 +1,13 @@
+.git
+.github
+node_modules
+dist
+.vercel
+.env*
+storage
+backups
+.agents
+skills-lock.json
+tests
+*.class
+*.log

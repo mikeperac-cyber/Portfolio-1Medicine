@@ -1,0 +1,10 @@
+.git
+.agents
+skills-lock.json
+storage
+backups
+.env*
+tests
+*.class
+Dockerfile*
+compose.yaml
