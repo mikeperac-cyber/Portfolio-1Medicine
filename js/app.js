@@ -195,27 +195,41 @@ const App = {
 
     container.innerHTML = 
       '<section class="hero">' +
-        '<div class="hero-badge">' +
-          '<span class="badge badge-success">✓ 100% Free &amp; Anonymous</span> ' +
-          '<span class="badge badge-secondary">Grade 5–6 Reading Level</span>' +
+        '<div class="hero-copy">' +
+          '<div class="hero-badge">' +
+            '<span class="badge badge-success">✓ 100% Free &amp; Anonymous</span> ' +
+            '<span class="badge badge-secondary">Grade 5–6 Reading Level</span>' +
+          '</div>' +
+          '<h1>' + (t.heroTitle || 'Health knowledge you can trust, in words that make sense.') + '</h1>' +
+          '<p>' + (t.heroSubtitle || 'Simple, doctor-reviewed explainers on diabetes, vaccines, medicines, and clinics—free for our entire community with zero login required.') + '</p>' +
+          '<div class="hero-actions">' +
+            '<a href="#/topics" class="btn btn-primary">' + (t.exploreTopics || 'Browse Health Topics') + '</a> ' +
+            '<a href="#/clinics" class="btn btn-secondary">' + (t.findClinics || 'Find Free &amp; Low-Cost Clinics') + '</a> ' +
+            '<button class="btn btn-outline" data-action="showPrintModal">🖨️ Outreach Flyer &amp; QR</button>' +
+          '</div>' +
         '</div>' +
-        '<h1 style="margin-top:0.75rem;">' + (t.heroTitle || 'Health knowledge you can trust, in words that make sense.') + '</h1>' +
-        '<p>' + (t.heroSubtitle || 'Simple, doctor-reviewed explainers on diabetes, vaccines, medicines, and clinics—free for our entire community with zero login required.') + '</p>' +
-        '<div class="hero-actions">' +
-          '<a href="#/topics" class="btn btn-primary">' + (t.exploreTopics || 'Browse Health Topics') + '</a> ' +
-          '<a href="#/clinics" class="btn btn-secondary">' + (t.findClinics || 'Find Free &amp; Low-Cost Clinics') + '</a> ' +
-          '<button class="btn btn-outline" data-action="showPrintModal">🖨️ Outreach Flyer &amp; QR</button>' +
-        '</div>' +
+        '<aside class="hero-rail" aria-label="' + (t.communityPledgeTitle || 'Our Community Promise') + '">' +
+          '<div class="hero-rail-heading"><span class="hero-rail-mark">✦</span><span>' + (t.communityPledgeTitle || 'Our Community Promise') + '</span></div>' +
+          '<p class="hero-rail-intro">' + (t.topicsSubheading || 'Vetted by community physicians and public health leaders.') + '</p>' +
+          '<div class="hero-rail-list">' +
+            '<div class="hero-rail-item"><span>01</span><strong>' + (t.pledge1Title || 'No Medical Diagnosis') + '</strong></div>' +
+            '<div class="hero-rail-item"><span>02</span><strong>' + (t.pledge2Title || 'Zero Personal Data Collected') + '</strong></div>' +
+            '<div class="hero-rail-item"><span>03</span><strong>' + (t.pledge3Title || 'Official Sources Only') + '</strong></div>' +
+          '</div>' +
+        '</aside>' +
       '</section>' +
 
-      '<section style="margin-bottom: 3rem;">' +
-        '<h2>' + (t.topicsHeading || 'Essential Health Explainers') + '</h2>' +
-        '<p style="color: var(--color-text-muted); margin-bottom: 1.25rem;">' + (t.topicsSubheading || 'Vetted by community physicians and public health leaders.') + '</p>' +
+      '<section class="home-section">' +
+        '<div class="section-heading">' +
+          '<div><h2>' + (t.topicsHeading || 'Essential Health Explainers') + '</h2>' +
+          '<p>' + (t.topicsSubheading || 'Vetted by community physicians and public health leaders.') + '</p></div>' +
+          '<a class="section-link" href="#/topics">' + (t.exploreTopics || 'Browse Health Topics') + ' <span aria-hidden="true">↗</span></a>' +
+        '</div>' +
         '<div class="grid-cards">' +
           topics.map((top) => 
-            '<div class="card">' +
+            '<div class="card topic-card">' +
               '<div class="card-header">' +
-                '<span class="card-icon">' + top.icon + '</span>' +
+                '<span class="card-icon" aria-hidden="true" title="' + top.icon + '">' + (top.icon || '•').slice(0, 1) + '</span>' +
                 '<div>' +
                   '<div class="card-meta">' +
                     '<span class="badge">' + top.readingLevel + '</span> ' +
@@ -236,20 +250,20 @@ const App = {
         '</div>' +
       '</section>' +
 
-      '<section style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 2rem;">' +
-        '<h2 style="margin-bottom: 1.25rem;">' + (t.communityPledgeTitle || 'Our Community Promise') + '</h2>' +
-        '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">' +
-          '<div>' +
-            '<h3 style="font-size: 1.1rem; color: var(--color-primary); margin-bottom: 0.5rem;">🛡️ ' + (t.pledge1Title || 'No Medical Diagnosis') + '</h3>' +
-            '<p style="font-size: 0.95rem; color: var(--color-text-muted);">' + (t.pledge1Desc || 'We do not guess diagnoses or triage symptoms. We provide clear education to help you advocate for yourself.') + '</p>' +
+      '<section class="promise-section">' +
+        '<div class="section-heading section-heading-tight"><div><h2>' + (t.communityPledgeTitle || 'Our Community Promise') + '</h2></div></div>' +
+        '<div class="promise-grid">' +
+          '<div class="promise-item promise-primary">' +
+            '<span class="promise-icon" aria-hidden="true">🛡️</span><div><h3>' + (t.pledge1Title || 'No Medical Diagnosis') + '</h3>' +
+            '<p>' + (t.pledge1Desc || 'We do not guess diagnoses or triage symptoms. We provide clear education to help you advocate for yourself.') + '</p></div>' +
           '</div>' +
-          '<div>' +
-            '<h3 style="font-size: 1.1rem; color: var(--color-secondary); margin-bottom: 0.5rem;">🔒 ' + (t.pledge2Title || 'Zero Personal Data Collected') + '</h3>' +
-            '<p style="font-size: 0.95rem; color: var(--color-text-muted);">' + (t.pledge2Desc || 'No account or login required. Quizzes, surveys, and page visits are 100% anonymous.') + '</p>' +
+          '<div class="promise-item promise-secondary">' +
+            '<span class="promise-icon" aria-hidden="true">🔒</span><div><h3>' + (t.pledge2Title || 'Zero Personal Data Collected') + '</h3>' +
+            '<p>' + (t.pledge2Desc || 'No account or login required. Quizzes, surveys, and page visits are 100% anonymous.') + '</p></div>' +
           '</div>' +
-          '<div>' +
-            '<h3 style="font-size: 1.1rem; color: var(--color-warning); margin-bottom: 0.5rem;">📜 ' + (t.pledge3Title || 'Official Sources Only') + '</h3>' +
-            '<p style="font-size: 0.95rem; color: var(--color-text-muted);">' + (t.pledge3Desc || 'All content is adapted from the WHO, CDC, and health ministries with full citations.') + '</p>' +
+          '<div class="promise-item promise-warning">' +
+            '<span class="promise-icon" aria-hidden="true">📜</span><div><h3>' + (t.pledge3Title || 'Official Sources Only') + '</h3>' +
+            '<p>' + (t.pledge3Desc || 'All content is adapted from the WHO, CDC, and health ministries with full citations.') + '</p></div>' +
           '</div>' +
         '</div>' +
       '</section>';
@@ -294,7 +308,7 @@ const App = {
         topics.map((top) => 
           '<div class="card">' +
             '<div class="card-header">' +
-              '<span class="card-icon">' + top.icon + '</span>' +
+              '<span class="card-icon" aria-hidden="true" title="' + top.icon + '">' + (top.icon || '•').slice(0, 1) + '</span>' +
               '<div>' +
                 '<div class="card-meta">' +
                   '<span class="badge">' + top.readingLevel + '</span> ' +
